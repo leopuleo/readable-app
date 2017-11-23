@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { fetchCategories } from '../Actions/Categories'
 import { fetchPosts } from '../Actions/Posts';
 import { connect } from 'react-redux';
+import Header from './Header';
+import Footer from './Footer';
 
 class App extends Component {
 
@@ -16,7 +18,9 @@ class App extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="App">
+        <Header />
+        <Footer />
       </div>
     );
   }
