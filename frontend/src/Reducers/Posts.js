@@ -7,10 +7,7 @@ function posts(state = {}, action) {
 
   switch (type) {
     case RECEIVE_POSTS :
-      return posts.reduce((res, cur) => {
-        res[cur.id] = cur
-        return res
-      }, state)
+      return posts
       default :
         return state
   }

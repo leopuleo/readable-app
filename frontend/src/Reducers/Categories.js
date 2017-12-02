@@ -7,10 +7,7 @@ function categories(state = {}, action) {
   switch (type) {
 
     case RECEIVE_CATEGORIES:
-      return categories.reduce((res, cur) => {
-        res[cur.path] = cur
-        return res
-      }, state)
+      return categories
     default :
       return state
   }

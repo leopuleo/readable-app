@@ -4,6 +4,7 @@ import { fetchPosts } from '../Actions/Posts';
 import { connect } from 'react-redux';
 import Header from './Header';
 import Footer from './Footer';
+import Navigation from './Navigation';
 
 class App extends Component {
 
@@ -20,6 +21,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <Navigation />
         <Footer />
       </div>
     );
