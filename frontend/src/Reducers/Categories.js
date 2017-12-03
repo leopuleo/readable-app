@@ -2,7 +2,7 @@ import {
   RECEIVE_CATEGORIES
 } from '../Actions/Categories';
 
-function categories(state = {}, action) {
+function categories(state = [], action) {
   const { type, categories } = action;
   switch (type) {
 

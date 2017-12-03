@@ -2,7 +2,7 @@ import {
   RECEIVE_POSTS
 } from '../Actions/Posts';
 
-function posts(state = {}, action) {
+function posts(state = [], action) {
   const { type, posts } = action;
 
   switch (type) {
