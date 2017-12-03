@@ -8,11 +8,14 @@ class Navigation extends Component {
     return(
       <nav className="navigation">
       <ul>
-      {categories.length > 0 && categories.map(category =>
-          <li key={category.name}>
-            <Link to={`/category/${category.path}`}>{category.name}</Link>
-          </li>
-      )}
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        {categories.length > 0 && categories.map(category =>
+            <li key={category.name}>
+              <Link to={`/category/${category.path}`}>{category.name}</Link>
+            </li>
+        )}
       </ul>
       </nav>
     )

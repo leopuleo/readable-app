@@ -8,8 +8,7 @@ import Navigation from './Navigation';
 import PostList from './PostList';
 import PostNew from './PostNew';
 import PostSingle from './PostSingle';
-import CategoryList from './CategoryList';
-import Home from './Home';
+import List from './List';
 import { Route } from 'react-router-dom';
 
 class App extends Component {
@@ -18,7 +17,6 @@ class App extends Component {
     categories: null,
     posts: null
   }
-
   componentDidMount() {
     this.props.getCategories();
     this.props.getPosts();
@@ -28,10 +26,10 @@ class App extends Component {
       <div className="App">
         <Header />
         <Navigation />
-        <Route exact path="/" component={Home}  />
-        <Route path="/category/:path" component={CategoryList} />
-        <Route path="/post/:id/:slug" component={PostSingle} />
-        <Route exact path="/new" component={PostNew} />
+        <Route exact path="/" component={ List }  />
+        <Route path="/category/:category" component={ List } />
+        <Route path="/post/:id/:slug" component={ PostSingle } />
+        <Route exact path="/new" component={ PostNew } />
         <Footer />
       </div>
     );

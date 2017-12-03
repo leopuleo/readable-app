@@ -1,15 +1,21 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PostListContent from './PostListContent'
 
 class PostList extends Component {
   render() {
-    const { posts } = this.props
+    const { posts, category } = this.props
+
+    const filterList = () => {
+      category ? posts.filter((post) => (
+        post.category === category
+      )) : posts
+    }
+
     return(
        <div className="post-list">
-        {posts.length > 0 && posts.map((post) => (
-          <div key={post.id}>
-            {post.title}
-          </div>
+        {filterList.length > 0 && filterList.map((post) => (
+          <PostListContent key={post.id} post={post} />
         ))}
        </div>
     )

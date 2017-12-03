@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Header extends Component {
   render() {
     return (
       <header className="header">
-        Udacity Readable Project
+        <span className="logo">
+          <Link to="/">Udacity Readable Project</Link>
+        </span>
       </header>
     )
   }
