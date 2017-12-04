@@ -1,25 +1,42 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import slug from 'slug'
+import { Link } from 'react-router-dom'
 
 class PostListContent extends Component {
+
+  /*
+   * Defining the props for this component
+   */
+  static propTypes = {
+    post: PropTypes.object.isRequired
+  }
+
+  /**
+   * @description Generate the slug for post url from string
+   * @param {string} string to slug
+   */
+  slugifyPost(string) {
+    return slug(string, {
+      lower: true
+    })
+  }
+
   render() {
     const { post } = this.props
+    const slug = '/post/' + this.slugifyPost(post.title) + '/' + post.id + '/'
     return(
-       <div className="post-list-content">
-          <div key={post.id}>
-            ID: {post.id}<br />
-            Title: {post.title}<br />
-            Timestamp: {post.timestamp}<br />
-            Body: {post.body}<br />
-            Author: {post.author}<br />
-            Category: {post.category}<br />
-            Votescore: {post.voteScore}<br />
-            Deleted: {post.deleted}<br />
-            CommentCount: {post.commentCount}<br />
-             <hr />
-          </div>
-        ))}
-       </div>
+       <article className="post-list-content">
+          <Link to={ slug }>
+            <header className="entry-header">
+              <h2>{ post.title }</h2>
+            </header>
+            <div className="entry-excerpt">
+              { post.body }
+            </div>
+          </Link>
+       </article>
     )
   }
 }

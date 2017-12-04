@@ -5,12 +5,24 @@ import Banner from './Banner';
 
 class List extends Component {
 
+  /**
+   * @description Generate the list of posts
+   * @param {array} posts -List of posts
+   * @param {string} category - The selected category
+   */
+  generatePostList(posts, category) {
+    return category ? posts.filter((post) => (
+      post.category === category
+    )) : posts
+  }
+
   render() {
-    const { match } = this.props
+    const { match, posts } = this.props
+    const postList = this.generatePostList(posts, match.params.category)
     return (
       <div className="list">
       <Banner title={ match.params.category } />
-      <PostList category={ match.params.category } />
+      <PostList postList={ postList } />
       </div>
     )
   }
@@ -18,4 +30,6 @@ class List extends Component {
 
 const mapStateToProps = ({ posts }) => ({ posts })
 
-export default List
+export default connect(
+  mapStateToProps
+)(List)

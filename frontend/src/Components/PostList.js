@@ -1,29 +1,30 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PostListContent from './PostListContent'
+import PropTypes from 'prop-types'
+import PostListNotFound from './PostListNotFound'
 
 class PostList extends Component {
+
+  /*
+   * Defining the props for this component
+   */
+  static propTypes = {
+    postList: PropTypes.array
+  }
+
   render() {
-    const { posts, category } = this.props
-
-    const filterList = () => {
-      category ? posts.filter((post) => (
-        post.category === category
-      )) : posts
-    }
-
+    const { postList } = this.props
     return(
        <div className="post-list">
-        {filterList.length > 0 && filterList.map((post) => (
+        {postList.length > 0 ? postList.map((post) => (
           <PostListContent key={post.id} post={post} />
-        ))}
+        )) :
+          <PostListNotFound />
+        }
        </div>
     )
   }
 }
 
-const mapStateToProps = ({ posts }) => ({ posts })
-
-export default connect(
-  mapStateToProps
-)(PostList)
+export default PostList

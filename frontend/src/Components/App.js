@@ -27,8 +27,8 @@ class App extends Component {
         <Header />
         <Navigation />
         <Route exact path="/" component={ List }  />
-        <Route path="/category/:category" component={ List } />
-        <Route path="/post/:id/:slug" component={ PostSingle } />
+        <Route path="/category/:category/" component={ List } />
+        <Route path="/post/:slug/:id/" component={ PostSingle } />
         <Route exact path="/new" component={ PostNew } />
         <Footer />
       </div>

@@ -8,14 +8,14 @@ class Banner extends Component {
    * Defining the props for this component
    */
   static propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
   }
 
   render() {
     const { title } = this.props
     return (
       <header className="banner">
-       <h1>{ title ?  sentenceCase(title) : 'Home'  }</h1>
+       <h1>{ title ? sentenceCase(title) : 'Home'  }</h1>
       </header>
     )
   }
