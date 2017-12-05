@@ -11,7 +11,7 @@ export const receivePosts = posts => ({
 export const fetchPosts = () => dispatch =>
   getPosts().then( posts  =>
     dispatch(receivePosts(posts))
-  )
+)
 
 export const receiveSinglePost = post => ({
   type: RECEIVE_SINGLE_POST,
@@ -21,6 +21,6 @@ export const receiveSinglePost = post => ({
 export const fetchSinglePost = (id) => dispatch =>
   getSinglePost(id).then( post  =>
     dispatch(receiveSinglePost(post))
-  )
+)
 
 
