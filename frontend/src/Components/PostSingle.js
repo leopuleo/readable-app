@@ -18,7 +18,7 @@ class PostSingle extends Component {
       <article className="single-post">
         <header className="entry-header">
           <h1 className="entry-title">{ currentPost.title }</h1>
-          <time class="updated" datetime="{ postDate }">{ postDate }</time>
+          <time className="updated" datetime="{ postDate }">{ postDate }</time>
           <p class="byline author vcard">By { currentPost.author }</p>
         </header>
         <div className="entry-content">{ currentPost.body }</div>
