@@ -1,8 +1,14 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { fetchCategories } from '../Actions/Categories'
 
 class Navigation extends Component {
+
+  componentDidMount() {
+    this.props.getCategories()
+  }
+
   render() {
     const { categories } = this.props
     return(
@@ -22,8 +28,19 @@ class Navigation extends Component {
   }
 }
 
-const mapStateToProps = ({ categories }) => ({ categories })
+function mapStateToProps({ categories }) {
+  return {
+    categories
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getCategories: () => dispatch(fetchCategories()),
+  }
+}
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(Navigation)

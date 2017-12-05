@@ -1,25 +1,19 @@
-import React, { Component } from 'react';
-import { fetchCategories } from '../Actions/Categories'
-import { fetchPosts } from '../Actions/Posts';
-import { connect } from 'react-redux';
-import Header from './Header';
-import Footer from './Footer';
-import Navigation from './Navigation';
-import PostList from './PostList';
-import PostNew from './PostNew';
-import PostSingle from './PostSingle';
-import List from './List';
-import { Route } from 'react-router-dom';
+import React, { Component } from 'react'
+import { fetchPosts } from '../Actions/Posts'
+import { connect } from 'react-redux'
+import Header from './Header'
+import Footer from './Footer'
+import Navigation from './Navigation'
+import PostList from './PostList'
+import PostNew from './PostNew'
+import PostSingle from './PostSingle'
+import List from './List'
+import { Route } from 'react-router-dom'
 
 class App extends Component {
 
-  state = {
-    categories: null,
-    posts: null
-  }
   componentDidMount() {
-    this.props.getCategories();
-    this.props.getPosts();
+    this.props.getPosts()
   }
   render() {
     return (
@@ -36,16 +30,14 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({categories, posts}) {
+function mapStateToProps({ posts }) {
   return {
-    categories,
     posts
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    getCategories: () => dispatch(fetchCategories()),
     getPosts: () => dispatch(fetchPosts())
   }
 }
