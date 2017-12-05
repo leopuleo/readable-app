@@ -1,17 +1,26 @@
 import {
-  RECEIVE_POSTS
-} from '../Actions/Posts';
+  RECEIVE_POSTS,
+  RECEIVE_SINGLE_POST
+} from '../Actions/Posts'
 
-function posts(state = [], action) {
+export function posts(state = [], action) {
   const { type, posts } = action;
 
   switch (type) {
     case RECEIVE_POSTS :
       return posts
-      default :
-        return state
+    default :
+      return state
   }
-
 }
 
-export default posts;
+export function currentPost(state = {}, action) {
+  const { type, post } = action;
+
+  switch (type) {
+    case RECEIVE_SINGLE_POST :
+      return post
+    default :
+      return state
+  }
+}
