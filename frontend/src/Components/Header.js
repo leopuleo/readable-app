@@ -47,6 +47,9 @@ class Header extends Component {
                     <NavLink tag={Link} to={`/category/${category.path}/`}>{sentenceCase(category.name)}</NavLink>
                   </NavItem>
                 ))}
+                <NavItem key='new'>
+                  <NavLink tag={Link} to="/new">New post</NavLink>
+                </NavItem>
               </Nav>
             </Collapse>
           </Navbar>
