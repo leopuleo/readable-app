@@ -15,7 +15,6 @@ class PostSingleComments extends Component {
 
   componentDidMount() {
     const { postId, getCurrentPostComments } = this.props
-    console.log(postId)
     getCurrentPostComments(postId)
   }
 

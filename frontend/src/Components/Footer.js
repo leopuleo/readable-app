@@ -4,7 +4,9 @@ class Footer extends Component {
   render() {
     return (
       <footer className="app-footer">
-        Powered by leonardo.giac.one
+        <div className="container">
+          Powered by leonardo.giac.one
+        </div>
       </footer>
     )
   }

@@ -17,11 +17,13 @@ class PostList extends Component {
     const { postList } = this.props
     return(
        <div className="post-list">
-        {postList.length > 0 ? postList.map((post) => (
-          <PostListContent key={post.id} post={post} />
-        )) :
-          <PostListNotFound />
-        }
+        <div className="container">
+          {postList.length > 0 ? postList.map((post) => (
+            <PostListContent key={post.id} post={post} />
+          )) :
+            <PostListNotFound />
+          }
+        </div>
        </div>
     )
   }
