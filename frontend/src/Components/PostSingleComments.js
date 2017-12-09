@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchSingleComments } from '../Actions/Comments'
 import PropTypes from 'prop-types'
-import moment from 'moment'
 
 class PostSingleComments extends Component {
 

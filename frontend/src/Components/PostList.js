@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import PostListContent from './PostListContent'
 import PropTypes from 'prop-types'
 import PostListNotFound from './PostListNotFound'
@@ -24,7 +23,7 @@ class PostList extends Component {
             <PostListNotFound />
           }
         </div>
-       </div>
+      </div>
     )
   }
 }
