@@ -3,7 +3,6 @@ import { fetchPosts } from '../Actions/Posts'
 import { connect } from 'react-redux'
 import Header from './Header'
 import Footer from './Footer'
-import Navigation from './Navigation'
 import PostList from './PostList'
 import PostNew from './PostNew'
 import PostSingle from './PostSingle'
@@ -19,7 +18,6 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Navigation />
         <Route exact path="/" component={ List }  />
         <Route path="/category/:category/" component={ List } />
         <Route path="/post/:slug/:id/" component={ PostSingle } />
