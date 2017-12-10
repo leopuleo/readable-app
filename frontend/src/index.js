@@ -10,6 +10,7 @@ import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import { BrowserRouter, Route } from 'react-router-dom'
 import 'bootstrap/dist/css/bootstrap.css'
+import 'react-widgets/dist/css/react-widgets.css'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
