@@ -1,9 +1,14 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import PostList from './PostList';
-import Banner from './Banner';
+import React, { Component } from 'react'
+import { fetchPosts } from '../Actions/Posts'
+import { connect } from 'react-redux'
+import PostList from './PostList'
+import Banner from './Banner'
 
 class List extends Component {
+
+  componentDidMount() {
+    this.props.getPosts()
+  }
 
   /**
    * @description Generate the list of posts
@@ -28,8 +33,19 @@ class List extends Component {
   }
 }
 
-const mapStateToProps = ({ posts }) => ({ posts })
+function mapStateToProps({ posts }) {
+  return {
+    posts
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getPosts: () => dispatch(fetchPosts())
+  }
+}
 
 export default connect(
-  mapStateToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(List)

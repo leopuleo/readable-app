@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import { fetchPosts } from '../Actions/Posts'
-import { connect } from 'react-redux'
 import Header from './Header'
 import Footer from './Footer'
 import PostNew from './PostNew'
@@ -9,10 +7,6 @@ import List from './List'
 import { Route } from 'react-router-dom'
 
 class App extends Component {
-
-  componentDidMount() {
-    this.props.getPosts()
-  }
   render() {
     return (
       <div className="App">
@@ -27,19 +21,5 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({ posts }) {
-  return {
-    posts
-  }
-}
 
-function mapDispatchToProps(dispatch) {
-  return {
-    getPosts: () => dispatch(fetchPosts())
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App)
+export default App
