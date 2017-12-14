@@ -59,9 +59,10 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps({ categories }) {
+function mapStateToProps({ categories, currentPost }) {
   return {
-    categories
+    categories,
+    currentPost
   }
 }
 

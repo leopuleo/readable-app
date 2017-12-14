@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 import { fetchSinglePost } from '../Actions/Posts'
 import moment from 'moment'
 import PostSingleComments  from './PostSingleComments'
+import 'font-awesome/css/font-awesome.min.css'
+import { Link } from 'react-router-dom'
 
 class PostSingle extends Component {
 
@@ -15,7 +17,6 @@ class PostSingle extends Component {
     const { currentPost, match} = this.props
     const postDate = moment(currentPost.timestamp).format("DD/MM/YYYY");
     return (
-
       <article className="single-post">
         <div className="container">
           <header className="entry-header">
@@ -29,6 +30,7 @@ class PostSingle extends Component {
             <p>Category: { currentPost.category }</p>
             <p>Comments: { currentPost.commentCount }</p>
             <PostSingleComments postId={match.params.id}/>
+            <Link to={`/edit/${currentPost.id}`}><i className="fa fa-pencil" aria-hidden="true"></i></Link>
           </footer>
         </div>
       </article>

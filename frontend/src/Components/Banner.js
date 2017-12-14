@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Container } from 'reactstrap'
 import sentenceCase from 'sentence-case'
 import PropTypes from 'prop-types'
 
@@ -14,9 +15,11 @@ class Banner extends Component {
   render() {
     const { title } = this.props
     return (
-      <header className="banner">
-       <h1>{ title ? sentenceCase(title) : 'Home'  }</h1>
-      </header>
+      <Container>
+        <header className="banner">
+         <h1>{ title ? sentenceCase(title) : 'Home' }</h1>
+        </header>
+      </Container>
     )
   }
 }
