@@ -1,8 +1,19 @@
 import {
   RECEIVE_POSTS,
   RECEIVE_SINGLE_POST,
-  NEW_POST
+  NEW_POST,
+  LOADING_DATA
 } from '../Actions/Posts'
+
+export function loadingStatus(state = true, action) {
+  const { type, status } = action;
+  switch (type) {
+    case LOADING_DATA :
+      return status
+    default :
+      return state
+  }
+}
 
 export function posts(state = [], action) {
   const { type, posts } = action;

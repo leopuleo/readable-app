@@ -1,28 +1,40 @@
 import { getPosts, getSinglePost, sendNewPost } from '../Utils/api';
 
+export const LOADING_DATA = 'LOADING_DATA'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
 export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST'
 export const NEW_POST = 'NEW_POST'
+
+export const loadingData = status => ({
+  type: LOADING_DATA,
+  status
+})
 
 export const receivePosts = posts => ({
   type: RECEIVE_POSTS,
   posts
 })
 
-export const fetchPosts = () => dispatch =>
-  getPosts().then( posts  =>
+export const fetchPosts = () => dispatch => {
+  dispatch(loadingData(true))
+  getPosts().then( (posts)  => {
     dispatch(receivePosts(posts))
-)
+    dispatch(loadingData(false))
+  })
+}
 
 export const receiveSinglePost = post => ({
   type: RECEIVE_SINGLE_POST,
   post
 })
 
-export const fetchSinglePost = (id) => dispatch =>
-  getSinglePost(id).then( post  =>
+export const fetchSinglePost = (id) => dispatch => {
+  dispatch(loadingData(true))
+  getSinglePost(id).then( (post) => {
     dispatch(receiveSinglePost(post))
-)
+    dispatch(loadingData(false))
+  })
+}
 
 export const newPostCreated = post => ({
   type: NEW_POST,
