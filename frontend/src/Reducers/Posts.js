@@ -54,7 +54,8 @@ export function updatePost(state = posts, action) {
   switch (type) {
     case UPDATE_POST :
       return [
-        ...state.filter(p => p.id !== post.id), post
+        ...state.filter(p => p.id !== post.id),
+        post
       ]
     default :
       return state
