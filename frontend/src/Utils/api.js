@@ -37,3 +37,12 @@ export const sendNewPost = (post) =>
     body: JSON.stringify(post)
   }).then(res => res.json())
 
+export const updatePost = (post) =>
+  fetch(`${api}/posts/${post.id}`, {
+    method: 'PUT',
+    headers: headers,
+    body: JSON.stringify({
+      'title': post.title,
+      'body': post.body
+    })
+  }).then(res => res.json())

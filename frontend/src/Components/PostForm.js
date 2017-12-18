@@ -6,7 +6,7 @@ import moment from 'moment'
 import uuidv1 from 'uuid/v1'
 import sentenceCase from 'sentence-case'
 import Errors from './Errors'
-import { createNewPost } from '../Actions/Posts'
+import { createNewPost, updateSinglePost } from '../Actions/Posts'
 import { Link } from 'react-router-dom'
 import slug from 'slug'
 import PropTypes from 'prop-types'
@@ -57,21 +57,32 @@ class PostForm extends Component {
   }
 
   handleSubmit = (e) => {
-    const { sendNewPost } = this.props
+    const {  formStatus, sendNewPost, updatePost } = this.props
     e.preventDefault()
     let errors = this.handleValidation(this.state)
     this.setState({ errors: errors })
     if(errors.length === 0) {
-      sendNewPost({
-        id: this.state.id,
-        timestamp: this.state.timestamp,
-        title: this.state.title,
-        body: this.state.body,
-        author: this.state.author,
-        category: this.state.category
-      }).then(() => {
-        this.setState({ success: true })
-      })
+
+      if(formStatus === 'edit') {
+        updatePost({
+          id: this.state.id,
+          title: this.state.title,
+          body: this.state.body
+        }).then(() => {
+          this.setState({ success: true })
+        })
+      } else {
+        sendNewPost({
+          id: this.state.id,
+          timestamp: this.state.timestamp,
+          title: this.state.title,
+          body: this.state.body,
+          author: this.state.author,
+          category: this.state.category
+        }).then(() => {
+          this.setState({ success: true })
+        })
+      }
     }
   }
 
@@ -157,7 +168,8 @@ function mapStateToProps({ categories }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    sendNewPost: (post) => dispatch(createNewPost(post))
+    sendNewPost: (post) => dispatch(createNewPost(post)),
+    updatePost: (post) => dispatch(updateSinglePost(post))
   }
 }
 
