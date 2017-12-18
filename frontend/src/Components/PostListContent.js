@@ -31,9 +31,6 @@ class PostListContent extends Component {
             <header className="entry-header">
               <h2>{ post.title }</h2>
             </header>
-            <div className="entry-excerpt">
-              { post.body }
-            </div>
           </Link>
        </article>
     )
