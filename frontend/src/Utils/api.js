@@ -54,3 +54,10 @@ export const deletePost = (id) =>
   }).then(res => res.json())
     .then(data => data)
 
+export const sendNewComment = (comment) =>
+  fetch(`${api}/comments`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(comment)
+  }).then(res => res.json())
+

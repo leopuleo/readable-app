@@ -25,7 +25,8 @@ class PostSingleComments extends Component {
       <div className="post-single-comments-list">
         {currentPostComments.map((comment) => (
           <div key={ comment.id } className="comment">
-            {comment.author} says: {comment.body}
+            <h4>{comment.author} says: </h4>
+            <p>{comment.body}</p>
           </div>
         ))}
       </div>

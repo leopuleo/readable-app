@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchSinglePost, deleteSinglePost } from '../Actions/Posts'
 import moment from 'moment'
-import PostSingleComments  from './PostSingleComments'
+import PostSingleComments from './PostSingleComments'
+import CommentsForm from './CommentsForm'
 import 'font-awesome/css/font-awesome.min.css'
 import { Link } from 'react-router-dom'
 import { Alert } from 'reactstrap'
@@ -32,7 +33,7 @@ class PostSingle extends Component {
         { currentPost.deleted ? (
           <Alert color="warning">Post deleted</Alert>
         ) : (
-        <div>
+        <div className="entry-post">
           <header className="entry-header">
             <h1 className="entry-title">{ currentPost.title }</h1>
             <time className="updated" dateTime="{ postDate }">{ postDate }</time>
@@ -44,6 +45,7 @@ class PostSingle extends Component {
             <p>Category: { currentPost.category }</p>
             <p>Comments: { currentPost.commentCount }</p>
             <PostSingleComments postId={match.params.id}/>
+            <CommentsForm postId={match.params.id} formStatus="new" />
             <Link to={`/edit/${currentPost.id}`}><i className="fa fa-pencil" aria-hidden="true"></i></Link>
             <button onClick={() => this.handleDeletePost(match.params.id)}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
           </footer>
