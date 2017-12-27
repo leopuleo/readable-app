@@ -20,7 +20,7 @@ class PostForm extends Component {
     this.state = {
       id: currentPost ? currentPost.id : uuidv1(),
       title: currentPost ? currentPost.title : '',
-      timestamp: currentPost ? currentPost.timestamp : moment().unix(),
+      timestamp: currentPost ? currentPost.timestamp : moment().valueOf(),
       body: currentPost ? currentPost.body : '',
       author: currentPost ? currentPost.author : '',
       category: currentPost ? currentPost.category : '',
