@@ -46,3 +46,11 @@ export const updatePost = (post) =>
       'body': post.body
     })
   }).then(res => res.json())
+
+export const deletePost = (id) =>
+  fetch(`${api}/posts/${id}`, {
+    method: 'DELETE',
+    headers: headers
+  }).then(res => res.json())
+    .then(data => data)
+

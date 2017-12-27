@@ -3,7 +3,8 @@ import {
   RECEIVE_POSTS,
   RECEIVE_SINGLE_POST,
   NEW_POST,
-  UPDATE_POST
+  UPDATE_POST,
+  DELETE_POST
 } from '../Actions/Posts'
 
 export function loadingStatus(state = true, action) {
@@ -17,10 +18,24 @@ export function loadingStatus(state = true, action) {
 }
 
 export function posts(state = [], action) {
-  const { type, posts } = action;
+  const { type } = action;
   switch (type) {
     case RECEIVE_POSTS :
-      return posts
+      return action.posts
+    case NEW_POST :
+      return [
+        ...state,
+        action.post
+      ]
+    case UPDATE_POST :
+      return [
+        ...state.filter(p => p.id !== action.post.id),
+        action.post
+      ]
+    case DELETE_POST :
+      return [
+        ...state.filter(p => p.id !== action.post.id)
+      ]
     default :
       return state
   }
@@ -31,32 +46,11 @@ export function currentPost(state = {}, action) {
   switch (type) {
     case RECEIVE_SINGLE_POST :
       return post
-    default :
-      return state
-  }
-}
-
-export function newPost(state = posts, action) {
-  const { type, post} = action;
-  switch (type) {
-    case NEW_POST :
-      return [
+    case DELETE_POST :
+      return {
         ...state,
-        post
-      ]
-    default :
-      return state
-  }
-}
-
-export function updatePost(state = posts, action) {
-  const { type, post} = action;
-  switch (type) {
-    case UPDATE_POST :
-      return [
-        ...state.filter(p => p.id !== post.id),
-        post
-      ]
+        ['deleted']: true
+      }
     default :
       return state
   }
