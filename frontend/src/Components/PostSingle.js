@@ -23,21 +23,19 @@ class PostSingle extends Component {
     const postDate = moment(currentPost.timestamp).format("DD/MM/YYYY");
     return (
       <article className="single-post">
-        <div className="container">
-          <header className="entry-header">
-            <h1 className="entry-title">{ currentPost.title }</h1>
-            <time className="updated" dateTime="{ postDate }">{ postDate }</time>
-            <p className="byline author vcard">By { currentPost.author }</p>
-          </header>
-          <div className="entry-content" dangerouslySetInnerHTML={this.createMarkup(currentPost.body)} />
-          <footer className="entry-footer">
-            <p>Votes: { currentPost.voteScore }</p>
-            <p>Category: { currentPost.category }</p>
-            <p>Comments: { currentPost.commentCount }</p>
-            <PostSingleComments postId={match.params.id}/>
-            <Link to={`/edit/${currentPost.id}`}><i className="fa fa-pencil" aria-hidden="true"></i></Link>
-          </footer>
-        </div>
+        <header className="entry-header">
+          <h1 className="entry-title">{ currentPost.title }</h1>
+          <time className="updated" dateTime="{ postDate }">{ postDate }</time>
+          <p className="byline author vcard">By { currentPost.author }</p>
+        </header>
+        <div className="entry-content" dangerouslySetInnerHTML={this.createMarkup(currentPost.body)} />
+        <footer className="entry-footer">
+          <p>Votes: { currentPost.voteScore }</p>
+          <p>Category: { currentPost.category }</p>
+          <p>Comments: { currentPost.commentCount }</p>
+          <PostSingleComments postId={match.params.id}/>
+          <Link to={`/edit/${currentPost.id}`}><i className="fa fa-pencil" aria-hidden="true"></i></Link>
+        </footer>
       </article>
     )
   }

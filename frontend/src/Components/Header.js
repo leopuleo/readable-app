@@ -10,7 +10,8 @@ import {
   Collapse,
   Nav,
   NavItem,
-  NavLink
+  NavLink,
+  Container
 } from 'reactstrap'
 
 class Header extends Component {
@@ -33,7 +34,7 @@ class Header extends Component {
     const { categories } = this.props
     return (
       <header className="site-header">
-        <div className="container">
+        <Container>
           <Navbar color="faded" light expand="md">
             <NavbarBrand tag={Link} to="/">Readable App</NavbarBrand>
             <NavbarToggler onClick={this.toggle} />
@@ -53,7 +54,7 @@ class Header extends Component {
               </Nav>
             </Collapse>
           </Navbar>
-        </div>
+        </Container>
       </header>
     )
   }
