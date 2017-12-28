@@ -1,4 +1,4 @@
-import { getPosts, getSinglePost, sendNewPost, updatePost, deletePost } from '../Utils/api';
+import { getPosts, getSinglePost, sendNewPost, updatePost, deletePost, updateVotesPost } from '../Utils/api';
 
 export const LOADING_DATA = 'LOADING_DATA'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
@@ -6,6 +6,7 @@ export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST'
 export const NEW_POST = 'NEW_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 export const DELETE_POST = 'DELETE_POST'
+export const UPDATE_VOTE = 'UPDATE_VOTE'
 
 export const loadingData = status => ({
   type: LOADING_DATA,
@@ -67,3 +68,14 @@ export const deleteSinglePost = (post) => dispatch =>
   deletePost(post).then( post =>
     dispatch(singlePostDeleted(post))
 )
+
+export const singlePostVoteUpdated = (post) => ({
+  type: UPDATE_VOTE,
+  post
+})
+
+export const updateSinglePostVote = (id, vote) => dispatch =>
+  updateVotesPost(id, vote).then( post =>
+    dispatch(singlePostVoteUpdated(post))
+)
+

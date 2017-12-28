@@ -54,6 +54,15 @@ export const deletePost = (id) =>
   }).then(res => res.json())
     .then(data => data)
 
+export const updateVotesPost = (id, vote) =>
+  fetch(`${api}/posts/${id}`, {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      option: vote
+    })
+  }).then(res => res.json())
+
 export const sendNewComment = (comment) =>
   fetch(`${api}/comments`, {
     method: 'POST',

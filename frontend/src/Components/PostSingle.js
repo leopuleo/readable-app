@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchSinglePost, deleteSinglePost } from '../Actions/Posts'
+import { fetchSinglePost, deleteSinglePost, updateSinglePostVote } from '../Actions/Posts'
 import moment from 'moment'
 import CommentList from './CommentList'
 import CommentsForm from './CommentsForm'
@@ -23,6 +23,11 @@ class PostSingle extends Component {
   handleDeletePost(id){
     const { deleteCurrentPost } = this.props
     deleteCurrentPost(id)
+  }
+
+  handleVotePost(id, vote) {
+    const { updateCurrentPostVote } = this.props
+    updateCurrentPostVote(id, vote)
   }
 
   render() {
@@ -48,6 +53,8 @@ class PostSingle extends Component {
             <CommentsForm postId={match.params.id} formStatus="new" />
             <Link to={`/edit/${currentPost.id}`}><i className="fa fa-pencil" aria-hidden="true"></i></Link>
             <button onClick={() => this.handleDeletePost(match.params.id)}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
+            <button onClick={() => this.handleVotePost(match.params.id, 'upVote')}><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+            <button onClick={() => this.handleVotePost(match.params.id, 'downVote')}><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
           </footer>
         </div>
         )}
@@ -65,7 +72,8 @@ function mapStateToProps({ currentPost }) {
 function mapDispatchToProps(dispatch) {
   return {
     getCurrentPost: (id) => dispatch(fetchSinglePost(id)),
-    deleteCurrentPost: (id) => dispatch(deleteSinglePost(id))
+    deleteCurrentPost: (id) => dispatch(deleteSinglePost(id)),
+    updateCurrentPostVote: (id, vote) => dispatch(updateSinglePostVote(id, vote))
   }
 }
 

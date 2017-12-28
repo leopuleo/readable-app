@@ -4,7 +4,8 @@ import {
   RECEIVE_SINGLE_POST,
   NEW_POST,
   UPDATE_POST,
-  DELETE_POST
+  DELETE_POST,
+  UPDATE_VOTE
 } from '../Actions/Posts'
 
 import {
@@ -41,6 +42,11 @@ export function posts(state = [], action) {
       return [
         ...state.filter(p => p.id !== action.post.id)
       ]
+    case UPDATE_VOTE :
+      return [
+        ...state.filter(p => p.id !== action.post.id),
+        action.post
+      ]
     default :
       return state
   }
@@ -65,6 +71,11 @@ export function currentPost(state = {}, action) {
       return {
         ...state,
         'commentCount': state.commentCount - 1
+      }
+    case UPDATE_VOTE :
+      return {
+        ...state,
+        'voteScore': post.voteScore
       }
     default :
       return state
