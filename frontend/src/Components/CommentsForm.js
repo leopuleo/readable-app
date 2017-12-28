@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import moment from 'moment'
 import uuidv1 from 'uuid/v1'
 import PropTypes from 'prop-types'
-import { Button, Form, FormGroup, Label, Input, Alert, FormText } from 'reactstrap'
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { createNewComment } from '../Actions/Comments'
 import Errors from './Errors'
 
@@ -18,12 +18,12 @@ class CommentsForm extends Component {
       body: currentComment ? currentComment.body : '',
       author: currentComment ? currentComment.author : '',
       parentId: postId,
-      errors: [],
-      success: false,
+      errors: []
 
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleValidation = this.handleValidation.bind(this)
+    this.resetState = this.resetState.bind(this)
   }
 
 
@@ -46,6 +46,18 @@ class CommentsForm extends Component {
     return errors
   }
 
+  resetState = () => {
+    const { postId } = this.props
+    this.setState({
+      id: uuidv1(),
+      timestamp: moment().valueOf(),
+      body: '',
+      author: '',
+      parentId: postId,
+      errors: []
+    })
+  }
+
   handleSubmit = (e) => {
     const {  formStatus, sendNewComment } = this.props
     e.preventDefault()
@@ -63,30 +75,27 @@ class CommentsForm extends Component {
           author: this.state.author,
           parentId: this.state.parentId
         }).then(() => {
-          this.setState({ success: true })
+          this.resetState()
         })
       }
     }
   }
 
   render() {
-    const { errors, success } = this.state
+    const { errors } = this.state
     return (
       <div className="comments-form">
         { errors.length > 0 ? <Errors notices={errors} /> : '' }
-        { success ?
-          <Alert color="success">Comment saved</Alert>
-        : ''}
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Label for="commentAuthor">Author</Label>
             <Input type="text" name="commentAuthor" id="commentAuthor" placeholder="Enter your name" value={this.state.author} onChange={e => this.setState({ author: e.target.value })} />
           </FormGroup>
           <FormGroup>
-            <Label for="commentBody">Text Area</Label>
-            <Input type="textarea" name="commentBody" id="commentBody" value={this.state.body} onChange={e => this.setState({ body: e.target.value })} />
+            <Label for="commentBody">Comment</Label>
+            <Input type="textarea" name="commentBody" id="commentBody" placeholder="Enter your comment" value={this.state.body} onChange={e => this.setState({ body: e.target.value })} />
           </FormGroup>
-          <Button>Submit</Button>
+          <Button color="primary">Submit</Button>
         </Form>
       </div>
     )

@@ -7,6 +7,10 @@ import {
   DELETE_POST
 } from '../Actions/Posts'
 
+import {
+  NEW_COMMENT
+} from '../Actions/Comments';
+
 export function loadingStatus(state = true, action) {
   const { type, status } = action;
   switch (type) {
@@ -49,7 +53,12 @@ export function currentPost(state = {}, action) {
     case DELETE_POST :
       return {
         ...state,
-        ['deleted']: true
+        'deleted': true
+      }
+    case NEW_COMMENT :
+      return {
+        ...state,
+        'commentCount': state.commentCount + 1
       }
     default :
       return state
