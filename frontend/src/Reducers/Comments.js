@@ -1,10 +1,22 @@
 import {
   RECEIVE_SINGLE_COMMENTS,
   NEW_COMMENT,
-  DELETE_COMMENT
+  DELETE_COMMENT,
+  UPDATE_COMMENT,
+  EDITING_COMMENT
 } from '../Actions/Comments';
 
-function currentPostComments(state = [], action) {
+export function editingComment(state = false, action) {
+  const { type, status } = action;
+  switch (type) {
+    case EDITING_COMMENT :
+      return status
+    default:
+      return state
+  }
+}
+
+export function currentPostComments(state = [], action) {
   const { type } = action;
   switch (type) {
     case RECEIVE_SINGLE_COMMENTS :
@@ -19,9 +31,13 @@ function currentPostComments(state = [], action) {
         ...state.filter(c => c.id !== action.comment.id),
           action.comment
       ]
+    case UPDATE_COMMENT :
+      return [
+        ...state.filter(c => c.id !== action.comment.id),
+        action.comment
+      ]
     default :
       return state
   }
 }
 
-export default currentPostComments

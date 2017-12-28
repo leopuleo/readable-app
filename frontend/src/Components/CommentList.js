@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchSingleComments, deleteSingleComment } from '../Actions/Comments'
+import { fetchSingleComments } from '../Actions/Comments'
 import PropTypes from 'prop-types'
+import CommentSingle from './CommentSingle'
 
-class PostSingleComments extends Component {
+class CommentList extends Component {
 
   /*
    * Defining the props for this component
@@ -17,22 +18,12 @@ class PostSingleComments extends Component {
     getCurrentPostComments(postId)
   }
 
-
-  handleDeleteComment(id){
-    const { deleteComment } = this.props
-    deleteComment(id)
-  }
-
   render() {
     const { currentPostComments } = this.props
     return(
-      <div className="post-single-comments-list">
+      <div className="comment-list">
         {currentPostComments.filter((comment) => comment.deleted !== true).map((comment) => (
-          <div key={ comment.id } className="comment">
-            <h4>{comment.author} says: </h4>
-            <p>{comment.body}</p>
-            <button onClick={() => this.handleDeleteComment(comment.id)}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
-          </div>
+          <CommentSingle key={comment.id} comment={comment} />
         ))}
       </div>
     )
@@ -47,12 +38,11 @@ function mapStateToProps({ currentPostComments }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getCurrentPostComments: (id) => dispatch(fetchSingleComments(id)),
-    deleteComment: (id) => dispatch(deleteSingleComment(id))
+    getCurrentPostComments: (id) => dispatch(fetchSingleComments(id))
   }
 }
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(PostSingleComments)
+)(CommentList)

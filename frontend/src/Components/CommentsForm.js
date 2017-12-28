@@ -4,7 +4,7 @@ import moment from 'moment'
 import uuidv1 from 'uuid/v1'
 import PropTypes from 'prop-types'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
-import { createNewComment } from '../Actions/Comments'
+import { createNewComment, updateSingleComment, setEditingComment } from '../Actions/Comments'
 import Errors from './Errors'
 
 class CommentsForm extends Component {
@@ -32,7 +32,8 @@ class CommentsForm extends Component {
    */
   static propTypes = {
     formStatus: PropTypes.string.isRequired,
-    postId: PropTypes.string.isRequired
+    postId: PropTypes.string.isRequired,
+    currentComment: PropTypes.object
   }
 
   handleValidation = (values) => {
@@ -59,13 +60,20 @@ class CommentsForm extends Component {
   }
 
   handleSubmit = (e) => {
-    const {  formStatus, sendNewComment } = this.props
+    const {  formStatus, sendNewComment, sendUpdateComment, editCommentStatus } = this.props
+    editCommentStatus(true)
     e.preventDefault()
     let errors = this.handleValidation(this.state)
     this.setState({ errors: errors })
     if(errors.length === 0) {
       if(formStatus === 'edit') {
-        alert('what?')
+        sendUpdateComment({
+          id: this.state.id,
+          body: this.state.body,
+        }).then(() => {
+          this.resetState()
+          editCommentStatus(false)
+        })
       } else {
         sendNewComment({
           id: this.state.id,
@@ -101,13 +109,21 @@ class CommentsForm extends Component {
   }
 }
 
+function mapStateToProps({ editingComment }) {
+  return {
+    editingComment
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
-    sendNewComment: (comment) => dispatch(createNewComment(comment))
+    sendNewComment: (comment) => dispatch(createNewComment(comment)),
+    sendUpdateComment: (comment) => dispatch(updateSingleComment(comment)),
+    editCommentStatus: (status) => dispatch(setEditingComment(status))
   }
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(CommentsForm)
