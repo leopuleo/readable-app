@@ -8,7 +8,8 @@ import {
 } from '../Actions/Posts'
 
 import {
-  NEW_COMMENT
+  NEW_COMMENT,
+  DELETE_COMMENT
 } from '../Actions/Comments';
 
 export function loadingStatus(state = true, action) {
@@ -59,6 +60,11 @@ export function currentPost(state = {}, action) {
       return {
         ...state,
         'commentCount': state.commentCount + 1
+      }
+    case DELETE_COMMENT :
+      return {
+        ...state,
+        'commentCount': state.commentCount - 1
       }
     default :
       return state

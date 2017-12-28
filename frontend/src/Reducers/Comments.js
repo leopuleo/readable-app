@@ -1,6 +1,7 @@
 import {
   RECEIVE_SINGLE_COMMENTS,
-  NEW_COMMENT
+  NEW_COMMENT,
+  DELETE_COMMENT
 } from '../Actions/Comments';
 
 function currentPostComments(state = [], action) {
@@ -13,10 +14,14 @@ function currentPostComments(state = [], action) {
         ...state,
         action.comment
       ]
+    case DELETE_COMMENT :
+      return [
+        ...state.filter(c => c.id !== action.comment.id),
+          action.comment
+      ]
     default :
       return state
   }
-
 }
 
 export default currentPostComments

@@ -64,7 +64,6 @@ class CommentsForm extends Component {
     let errors = this.handleValidation(this.state)
     this.setState({ errors: errors })
     if(errors.length === 0) {
-
       if(formStatus === 'edit') {
         alert('what?')
       } else {
