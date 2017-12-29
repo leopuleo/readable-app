@@ -3,6 +3,7 @@ import { fetchPosts } from '../Actions/Posts'
 import { connect } from 'react-redux'
 import PostList from './PostList'
 import Banner from './Banner'
+import PostListOrder from './PostListOrder'
 
 class List extends Component {
 
@@ -27,6 +28,7 @@ class List extends Component {
     return (
       <div className="list">
       <Banner title={ match.params.category } />
+      <PostListOrder />
       <PostList postList={ postList } />
       </div>
     )

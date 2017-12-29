@@ -127,7 +127,7 @@ class PostForm extends Component {
                 initialValue={this.state.body}
                 onChange={e => this.setState({ body: e.target.getContent() })}
                 init={{
-                  plugins: 'link image code',
+                  plugins: 'link image code fullscreen',
                   toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code '
                 }}
               />

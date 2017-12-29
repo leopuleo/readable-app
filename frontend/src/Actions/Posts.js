@@ -1,4 +1,4 @@
-import { getPosts, getSinglePost, sendNewPost, updatePost, deletePost, updateVotesPost } from '../Utils/api';
+import { getPosts, getSinglePost, sendNewPost, updatePost, deletePost, updateVotesPost } from '../Utils/Api'
 
 export const LOADING_DATA = 'LOADING_DATA'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
@@ -7,6 +7,7 @@ export const NEW_POST = 'NEW_POST'
 export const UPDATE_POST = 'UPDATE_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const UPDATE_VOTE = 'UPDATE_VOTE'
+export const SORT_POST = 'SORT_POST'
 
 export const loadingData = status => ({
   type: LOADING_DATA,
@@ -79,3 +80,10 @@ export const updateSinglePostVote = (id, vote) => dispatch =>
     dispatch(singlePostVoteUpdated(post))
 )
 
+export const sortPost = orderyBy => ({
+  type: SORT_POST,
+  orderyBy
+})
+
+export const updatePostOrder = (orderyBy) => dispatch =>
+  dispatch(sortPost(orderyBy))

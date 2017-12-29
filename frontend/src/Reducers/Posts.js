@@ -5,13 +5,16 @@ import {
   NEW_POST,
   UPDATE_POST,
   DELETE_POST,
-  UPDATE_VOTE
+  UPDATE_VOTE,
+  SORT_POST
 } from '../Actions/Posts'
 
 import {
   NEW_COMMENT,
   DELETE_COMMENT
 } from '../Actions/Comments';
+
+import { dynamicSort } from '../Utils/SortPost'
 
 export function loadingStatus(state = true, action) {
   const { type, status } = action;
@@ -46,6 +49,10 @@ export function posts(state = [], action) {
       return [
         ...state.filter(p => p.id !== action.post.id),
         action.post
+      ]
+    case SORT_POST :
+      return [
+        ...state.sort(dynamicSort(action.orderyBy))
       ]
     default :
       return state
