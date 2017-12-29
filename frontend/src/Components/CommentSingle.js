@@ -19,22 +19,22 @@ class CommentSingle extends Component {
   }
 
   handleUpdateComment() {
-    const { editCommentStatus } = this.props
-    editCommentStatus(true)
+    const { editCommentStatus, comment } = this.props
+    editCommentStatus(comment.id)
   }
 
   render() {
     const { comment, editingComment } = this.props
     return(
       <div key={ comment.id } className="comment-single">
-        {editingComment ?
-          <CommentsForm formStatus="edit" currentComment={comment} postId={comment.parentId} />
+        {editingComment === comment.id ?
+          <CommentsForm formStatus="edit" currentComment={comment} parentId={comment.parentId} />
           :
           <div className="comment-content">
             <h4>{comment.author} says: </h4>
             <p>{comment.body}</p>
             <button onClick={() => this.handleDeleteComment(comment.id)}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
-            <button onClick={() => this.handleUpdateComment()}><i className="fa fa-pencil" aria-hidden="true"></i></button>
+            <button onClick={() => this.handleUpdateComment(comment.id)}><i className="fa fa-pencil" aria-hidden="true"></i></button>
           </div>
         }
       </div>

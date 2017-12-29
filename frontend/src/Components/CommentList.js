@@ -10,12 +10,12 @@ class CommentList extends Component {
    * Defining the props for this component
    */
   static propTypes = {
-    postId: PropTypes.string.isRequired
+    parentId: PropTypes.string.isRequired
   }
 
   componentDidMount() {
-    const { postId, getCurrentPostComments } = this.props
-    getCurrentPostComments(postId)
+    const { parentId, getCurrentPostComments } = this.props
+    getCurrentPostComments(parentId)
   }
 
   render() {

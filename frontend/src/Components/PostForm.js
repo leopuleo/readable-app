@@ -102,7 +102,7 @@ class PostForm extends Component {
     const { categories, formStatus } = this.props
     const { errors, success, id, title } = this.state
     const slug = '/post/' + this.slugifyPost(title) + '/' + id + '/'
-    let disabled = formStatus === 'edit' ? {'disabled' : 'disabled'} : {};
+    const disabled = formStatus === 'edit' ? {'disabled' : 'disabled'} : {}
     return (
       <div className="post-new">
         { errors.length > 0 ? <Errors notices={errors} /> : '' }

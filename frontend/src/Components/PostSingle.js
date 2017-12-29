@@ -49,12 +49,12 @@ class PostSingle extends Component {
             <p>Votes: { currentPost.voteScore }</p>
             <p>Category: { currentPost.category }</p>
             <p>Comments: { currentPost.commentCount }</p>
-            <CommentList postId={match.params.id}/>
-            <CommentsForm postId={match.params.id} formStatus="new" />
+            <CommentList parentId={match.params.id}/>
+            <CommentsForm parentId={match.params.id} formStatus="new" />
             <Link to={`/edit/${currentPost.id}`}><i className="fa fa-pencil" aria-hidden="true"></i></Link>
             <button onClick={() => this.handleDeletePost(match.params.id)}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
-            <button onClick={() => this.handleVotePost(match.params.id, 'upVote')}><i class="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
-            <button onClick={() => this.handleVotePost(match.params.id, 'downVote')}><i class="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
+            <button onClick={() => this.handleVotePost(match.params.id, 'upVote')}><i className="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+            <button onClick={() => this.handleVotePost(match.params.id, 'downVote')}><i className="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
           </footer>
         </div>
         )}

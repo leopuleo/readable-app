@@ -11,15 +11,14 @@ class CommentsForm extends Component {
 
   constructor(props) {
     super(props)
-    const { postId, currentComment } = props
+    const { parentId, currentComment } = props
     this.state = {
       id: currentComment ? currentComment.id : uuidv1(),
       timestamp: currentComment ? currentComment.timestamp : moment().valueOf(),
       body: currentComment ? currentComment.body : '',
       author: currentComment ? currentComment.author : '',
-      parentId: postId,
+      parentId: parentId,
       errors: []
-
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleValidation = this.handleValidation.bind(this)
@@ -32,7 +31,7 @@ class CommentsForm extends Component {
    */
   static propTypes = {
     formStatus: PropTypes.string.isRequired,
-    postId: PropTypes.string.isRequired,
+    parentId: PropTypes.string.isRequired,
     currentComment: PropTypes.object
   }
 
@@ -48,20 +47,19 @@ class CommentsForm extends Component {
   }
 
   resetState = () => {
-    const { postId } = this.props
+    const { parentId } = this.props
     this.setState({
       id: uuidv1(),
       timestamp: moment().valueOf(),
       body: '',
       author: '',
-      parentId: postId,
+      parentId: parentId,
       errors: []
     })
   }
 
   handleSubmit = (e) => {
     const {  formStatus, sendNewComment, sendUpdateComment, editCommentStatus } = this.props
-    editCommentStatus(true)
     e.preventDefault()
     let errors = this.handleValidation(this.state)
     this.setState({ errors: errors })
@@ -90,13 +88,15 @@ class CommentsForm extends Component {
 
   render() {
     const { errors } = this.state
+    const { formStatus } =this.props
+    const disabled = formStatus === 'edit' ? {'disabled' : 'disabled'} : {}
     return (
       <div className="comments-form">
         { errors.length > 0 ? <Errors notices={errors} /> : '' }
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Label for="commentAuthor">Author</Label>
-            <Input type="text" name="commentAuthor" id="commentAuthor" placeholder="Enter your name" value={this.state.author} onChange={e => this.setState({ author: e.target.value })} />
+            <Input {...disabled} type="text" name="commentAuthor" id="commentAuthor" placeholder="Enter your name" value={this.state.author} onChange={e => this.setState({ author: e.target.value })} />
           </FormGroup>
           <FormGroup>
             <Label for="commentBody">Comment</Label>
