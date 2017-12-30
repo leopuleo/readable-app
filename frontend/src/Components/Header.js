@@ -3,16 +3,8 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import sentenceCase from 'sentence-case'
 import { fetchCategories } from '../Actions/Categories'
-import {
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Collapse,
-  Nav,
-  NavItem,
-  NavLink,
-  Container
-} from 'reactstrap'
+import { Navbar, NavbarToggler, NavbarBrand, Collapse, Nav, NavItem, NavLink, Button, Container } from 'reactstrap'
+import '../Assets/styles/header.css'
 
 class Header extends Component {
   constructor(props) {
@@ -49,7 +41,7 @@ class Header extends Component {
                   </NavItem>
                 ))}
                 <NavItem key='new'>
-                  <NavLink tag={Link} to="/new">New post</NavLink>
+                  <Button tag={Link} to="/new" outline color="secondary">New post</Button>
                 </NavItem>
               </Nav>
             </Collapse>
@@ -60,10 +52,9 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps({ categories, currentPost }) {
+function mapStateToProps({ categories }) {
   return {
-    categories,
-    currentPost
+    categories
   }
 }
 

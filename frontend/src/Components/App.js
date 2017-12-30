@@ -6,14 +6,13 @@ import PostEdit from './PostEdit'
 import PostSingle from './PostSingle'
 import List from './List'
 import { Switch, Route } from 'react-router-dom'
-import { Container } from 'reactstrap'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Header />
-        <Container>
+        <div className="site-content">
           <Switch>
             <Route exact path="/" component={ List }  />
             <Route path="/category/:category/" component={ List } />
@@ -21,7 +20,7 @@ class App extends Component {
             <Route exact path="/new" component={ PostNew } />
             <Route exact path="/edit/:id" component={ PostEdit } />
           </Switch>
-        </Container>
+        </div>
         <Footer />
       </div>
     );

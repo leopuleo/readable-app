@@ -10,7 +10,8 @@ class CommentList extends Component {
    * Defining the props for this component
    */
   static propTypes = {
-    parentId: PropTypes.string.isRequired
+    parentId: PropTypes.string.isRequired,
+    commentCount: PropTypes.string.isRequired,
   }
 
   componentDidMount() {
@@ -19,9 +20,10 @@ class CommentList extends Component {
   }
 
   render() {
-    const { currentPostComments } = this.props
+    const { currentPostComments, commentCount } = this.props
     return(
       <div className="comment-list">
+        <h3 className="comment-list-title">{commentCount} { commentCount === 1 ? 'comment' : 'comments' }</h3>
         {currentPostComments.filter((comment) => comment.deleted !== true).map((comment) => (
           <CommentSingle key={comment.id} comment={comment} />
         ))}

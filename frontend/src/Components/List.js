@@ -27,9 +27,11 @@ class List extends Component {
     const postList = this.generatePostList(posts, match.params.category)
     return (
       <div className="list">
-      <Banner title={ match.params.category } />
-      <PostListOrder />
-      <PostList postList={ postList } />
+        <Banner title={ match.params.category } />
+        <div className="list-content page-content">
+          <PostListOrder />
+          <PostList postList={ postList } />
+        </div>
       </div>
     )
   }

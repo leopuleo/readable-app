@@ -14,7 +14,7 @@ class Banner extends Component {
   render() {
     const { title } = this.props
     return (
-      <header className="banner">
+      <header className="page-banner">
        <h1>{ title ? sentenceCase(title) : 'Home' }</h1>
       </header>
     )

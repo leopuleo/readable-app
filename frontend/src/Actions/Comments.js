@@ -1,4 +1,4 @@
-import { getSinglePostComments, sendNewComment, deleteComment, updateComment } from '../Utils/api';
+import { getSinglePostComments, sendNewComment, deleteComment, updateComment } from '../Utils/Api';
 
 export const RECEIVE_SINGLE_COMMENTS = 'RECEIVE_SINGLE_COMMENTS'
 export const NEW_COMMENT = 'NEW_COMMENT'

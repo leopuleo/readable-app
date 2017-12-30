@@ -3,11 +3,12 @@ import { connect } from 'react-redux'
 import { fetchSinglePost, deleteSinglePost, updateSinglePostVote } from '../Actions/Posts'
 import moment from 'moment'
 import CommentList from './CommentList'
-import CommentsForm from './CommentsForm'
+import CommentForm from './CommentForm'
 import 'font-awesome/css/font-awesome.min.css'
 import { Link } from 'react-router-dom'
-import { Alert } from 'reactstrap'
-
+import { Row, Col, Alert, Container } from 'reactstrap'
+import sentenceCase from 'sentence-case'
+import '../Assets/styles/single.css'
 
 class PostSingle extends Component {
 
@@ -32,30 +33,48 @@ class PostSingle extends Component {
 
   render() {
     const { currentPost, match} = this.props
-    const postDate = moment(currentPost.timestamp).format("DD/MM/YYYY");
+    const postDate = moment(currentPost.timestamp).format("DD/MM/YYYY")
     return (
       <article className="single-post">
         { currentPost.deleted ? (
           <Alert color="warning">Post deleted</Alert>
         ) : (
-        <div className="entry-post">
-          <header className="entry-header">
-            <h1 className="entry-title">{ currentPost.title }</h1>
-            <time className="updated" dateTime="{ postDate }">{ postDate }</time>
-            <p className="byline author vcard">By { currentPost.author }</p>
-          </header>
-          <div className="entry-content" dangerouslySetInnerHTML={this.createMarkup(currentPost.body)} />
-          <footer className="entry-footer">
-            <p>Votes: { currentPost.voteScore }</p>
-            <p>Category: { currentPost.category }</p>
-            <p>Comments: { currentPost.commentCount }</p>
-            <CommentList parentId={match.params.id}/>
-            <CommentsForm parentId={match.params.id} formStatus="new" />
-            <Link to={`/edit/${currentPost.id}`}><i className="fa fa-pencil" aria-hidden="true"></i></Link>
-            <button onClick={() => this.handleDeletePost(match.params.id)}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
-            <button onClick={() => this.handleVotePost(match.params.id, 'upVote')}><i className="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
-            <button onClick={() => this.handleVotePost(match.params.id, 'downVote')}><i className="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
-          </footer>
+        <div className="entry-single-post">
+          <div className="entry-hero">
+            <div className="entry-overlay"></div>
+              <div className="entry-header">
+                <Container>
+                  <h1 className="entry-title">{ currentPost.title }</h1>
+                  <p className="entry-info">Written by { currentPost.author } in <Link to={`/category/${currentPost.category}/`}>{ sentenceCase(currentPost.category) }</Link> - { postDate }</p>
+                </Container>
+              </div>
+          </div>
+          <div className="entry-content">
+            <Container>
+            <Row>
+              <Col sm="12" md={{ size: 8, offset: 2 }}>
+                <div dangerouslySetInnerHTML={this.createMarkup(currentPost.body)} />
+              </Col>
+            </Row>
+            </Container>
+          </div>
+          <div className="entry-footer">
+            <Container>
+              <Row>
+                <Col sm="12" md={{ size: 6 }}>
+                  <CommentForm parentId={match.params.id} formStatus="new" />
+                </Col>
+                <Col sm="12" md={{ size: 6 }}>
+                  <CommentList commentCount={ currentPost.commentCount } parentId={match.params.id}/>
+                </Col>
+                  <p>Votes: { currentPost.voteScore }</p>
+                  <Link to={`/edit/${currentPost.id}`}><i className="fa fa-pencil" aria-hidden="true"></i></Link>
+                  <button onClick={() => this.handleDeletePost(match.params.id)}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
+                  <button onClick={() => this.handleVotePost(match.params.id, 'upVote')}><i className="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
+                  <button onClick={() => this.handleVotePost(match.params.id, 'downVote')}><i className="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
+              </Row>
+            </Container>
+          </div>
         </div>
         )}
       </article>
