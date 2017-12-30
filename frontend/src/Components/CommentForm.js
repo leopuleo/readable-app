@@ -7,7 +7,7 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { createNewComment, updateSingleComment, setEditingComment } from '../Actions/Comments'
 import Errors from './Errors'
 
-class CommentsForm extends Component {
+class CommentForm extends Component {
 
   constructor(props) {
     super(props)
@@ -91,7 +91,8 @@ class CommentsForm extends Component {
     const { formStatus } =this.props
     const disabled = formStatus === 'edit' ? {'disabled' : 'disabled'} : {}
     return (
-      <div className="comments-form">
+      <div className="entry-comment-form">
+        <h3 className="entry-comment-form-title">Leave a comment</h3>
         { errors.length > 0 ? <Errors notices={errors} /> : '' }
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
@@ -102,7 +103,7 @@ class CommentsForm extends Component {
             <Label for="commentBody">Comment</Label>
             <Input type="textarea" name="commentBody" id="commentBody" placeholder="Enter your comment" value={this.state.body} onChange={e => this.setState({ body: e.target.value })} />
           </FormGroup>
-          <Button color="primary">Submit</Button>
+          <Button outline color="primary">Submit</Button>
         </Form>
       </div>
     )
@@ -126,4 +127,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(CommentsForm)
+)(CommentForm)
