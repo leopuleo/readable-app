@@ -3,8 +3,19 @@ import {
   NEW_COMMENT,
   DELETE_COMMENT,
   UPDATE_COMMENT,
-  EDITING_COMMENT
+  EDITING_COMMENT,
+  LOADING_COMMENTS
 } from '../Actions/Comments';
+
+export function loadingComments(state = true, action) {
+  const { type, status } = action;
+  switch (type) {
+    case LOADING_COMMENTS :
+      return status
+    default :
+      return state
+  }
+}
 
 export function editingComment(state = false, action) {
   const { type, status } = action;

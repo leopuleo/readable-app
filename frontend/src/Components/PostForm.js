@@ -104,7 +104,7 @@ class PostForm extends Component {
     const slug = '/post/' + this.slugifyPost(title) + '/' + id + '/'
     const disabled = formStatus === 'edit' ? {'disabled' : 'disabled'} : {}
     return (
-      <div className="post-new">
+      <div className="post-form">
         { errors.length > 0 ? <Errors notices={errors} /> : '' }
         { success ?
           <Alert color="success">Post saved. Visit the <Link to={ slug }>post</Link></Alert>

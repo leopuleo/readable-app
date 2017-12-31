@@ -5,16 +5,25 @@ export const NEW_COMMENT = 'NEW_COMMENT'
 export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const EDITING_COMMENT = 'EDITING_COMMENT'
+export const LOADING_COMMENTS = 'LOADING_COMMENTS'
+
+export const loadingComments = status => ({
+  type: LOADING_COMMENTS,
+  status
+})
 
 export const receiveSingleComments = comments => ({
   type: RECEIVE_SINGLE_COMMENTS,
   comments
 })
 
-export const fetchSingleComments = (id) => dispatch =>
-  getSinglePostComments(id).then( comments  =>
+export const fetchSingleComments = (id) => dispatch => {
+  dispatch(loadingComments(true))
+  getSinglePostComments(id).then( (comments)  => {
     dispatch(receiveSingleComments(comments))
-)
+    dispatch(loadingComments(false))
+  })
+}
 
 export const newCommentCreated = comment => ({
   type: NEW_COMMENT,

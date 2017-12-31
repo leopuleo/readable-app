@@ -1,9 +1,10 @@
 import React, { Component }from 'react'
 import { connect } from 'react-redux'
 import { fetchSinglePost } from '../Actions/Posts'
-import Banner from './Banner'
+import PageTitle from './PageTitle'
 import Loading from './Loading'
 import PostForm from './PostForm'
+import { Container } from 'reactstrap'
 
 class PostEdit extends Component {
 
@@ -13,24 +14,26 @@ class PostEdit extends Component {
   }
 
   render() {
-    const { loadingStatus } = this.props
+    const { loadingPosts } = this.props
     return (
       <div className="post-edit">
-        <Banner title='Edit post' />
-        { loadingStatus ? (
-          <Loading />
-        ) : (
-          <PostForm formStatus="edit" currentPost={this.props.currentPost} />
-        )}
+        <Container>
+          <PageTitle title='Edit post' />
+          { loadingPosts ? (
+            <Loading />
+          ) : (
+            <PostForm formStatus="edit" currentPost={this.props.currentPost} />
+          )}
+        </Container>
       </div>
     )
   }
 }
 
-function mapStateToProps({ currentPost, loadingStatus }) {
+function mapStateToProps({ currentPost, loadingPosts }) {
   return {
     currentPost,
-    loadingStatus
+    loadingPosts
   }
 }
 

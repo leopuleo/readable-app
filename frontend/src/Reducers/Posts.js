@@ -1,5 +1,5 @@
 import {
-  LOADING_DATA,
+  LOADING_POSTS,
   RECEIVE_POSTS,
   RECEIVE_SINGLE_POST,
   NEW_POST,
@@ -16,10 +16,10 @@ import {
 
 import { dynamicSort } from '../Utils/SortPost'
 
-export function loadingStatus(state = true, action) {
+export function loadingPosts(state = true, action) {
   const { type, status } = action;
   switch (type) {
-    case LOADING_DATA :
+    case LOADING_POSTS :
       return status
     default :
       return state

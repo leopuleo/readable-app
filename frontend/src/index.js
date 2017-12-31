@@ -8,6 +8,7 @@ import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import { BrowserRouter, Route } from 'react-router-dom'
+import 'font-awesome/css/font-awesome.min.css'
 import 'bootstrap/dist/css/bootstrap.css'
 import './Assets/styles/index.css'
 

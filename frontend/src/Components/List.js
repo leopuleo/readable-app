@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { fetchPosts } from '../Actions/Posts'
 import { connect } from 'react-redux'
 import PostList from './PostList'
-import Banner from './Banner'
+import PageTitle from './PageTitle'
 import PostListOrder from './PostListOrder'
 import { Container } from 'reactstrap'
 import '../Assets/styles/list.css'
@@ -15,8 +15,8 @@ class List extends Component {
 
   /**
    * @description Generate the list of posts
-   * @param {array} posts -List of posts
-   * @param {string} category - The selected category
+   * @param {array} posts: List of posts
+   * @param {string} category: The selected category
    */
   generatePostList(posts, category) {
     return category ? posts.filter((post) => (
@@ -30,7 +30,7 @@ class List extends Component {
     return (
       <div className="list">
         <Container>
-          <Banner title={ match.params.category } />
+          <PageTitle title={ match.params.category } />
           <PostListOrder />
           <PostList postList={ postList } />
         </Container>

@@ -4,7 +4,7 @@ import { fetchSinglePost, deleteSinglePost, updateSinglePostVote } from '../Acti
 import moment from 'moment'
 import CommentList from './CommentList'
 import CommentForm from './CommentForm'
-import 'font-awesome/css/font-awesome.min.css'
+import Loading from './Loading'
 import { Link } from 'react-router-dom'
 import { Row, Col, Alert, Container, ButtonGroup, Button } from 'reactstrap'
 import sentenceCase from 'sentence-case'
@@ -32,63 +32,68 @@ class PostSingle extends Component {
   }
 
   render() {
-    const { currentPost, match} = this.props
+    const {loadingPosts, currentPost, match} = this.props
     const postDate = moment(currentPost.timestamp).format("DD/MM/YYYY")
-    return (
-      <article className="single-post">
-        { currentPost.deleted ? (
-          <Alert color="warning">Post deleted</Alert>
-        ) : (
-        <div className="entry-single-post">
-          <div className="entry-hero">
-            <div className="entry-overlay"></div>
-              <div className="entry-header">
+    if(loadingPosts) {
+      return (<Loading />)
+    } else {
+      if(currentPost.deleted) {
+        return (<Alert color="warning">Post deleted</Alert>)
+      } else {
+        return (
+          <article className="single-post">
+            <div className="entry-single-post">
+              <div className="entry-hero">
+                <div className="entry-overlay"></div>
+                  <div className="entry-header">
+                    <Container>
+                      <h1 className="entry-title">{ currentPost.title }</h1>
+                      <p className="entry-info">Written by { currentPost.author } in <Link to={`/category/${currentPost.category}/`}>{ sentenceCase(currentPost.category) }</Link> - { postDate }</p>
+                    </Container>
+                  </div>
+              </div>
+              <div className="entry-content">
                 <Container>
-                  <h1 className="entry-title">{ currentPost.title }</h1>
-                  <p className="entry-info">Written by { currentPost.author } in <Link to={`/category/${currentPost.category}/`}>{ sentenceCase(currentPost.category) }</Link> - { postDate }</p>
+                  <Row>
+                    <Col sm="12" md={{ size: 8, offset: 2 }}>
+                      <div dangerouslySetInnerHTML={this.createMarkup(currentPost.body)} />
+                      <ButtonGroup className="entry-tools">
+                        <Button color="link" tag={Link} to={`/edit/${currentPost.id}`}><i className="fa fa-pencil" aria-hidden="true"></i></Button>
+                        <Button color="link" onClick={() => this.handleDeletePost(match.params.id)}><i className="fa fa-trash" aria-hidden="true"></i></Button>
+                      </ButtonGroup>
+                    </Col>
+                  </Row>
                 </Container>
               </div>
-          </div>
-          <div className="entry-content">
-            <Container>
-              <Row>
-                <Col sm="12" md={{ size: 8, offset: 2 }}>
-                  <div dangerouslySetInnerHTML={this.createMarkup(currentPost.body)} />
-                  <ButtonGroup className="entry-tools">
-                    <Button color="link" tag={Link} to={`/edit/${currentPost.id}`}><i className="fa fa-pencil" aria-hidden="true"></i></Button>
-                    <Button color="link" onClick={() => this.handleDeletePost(match.params.id)}><i className="fa fa-trash" aria-hidden="true"></i></Button>
-                  </ButtonGroup>
-                </Col>
-              </Row>
-            </Container>
-          </div>
-          <div className="entry-footer">
-            <Container>
-              <Row>
-                <Col sm="12" md={{ size: 8, offset: 2 }}>
-                  <div className="entry-votes">
-                    <h3 className="votes-count">Votes: { currentPost.voteScore }</h3>
-                    <ButtonGroup className="votes-tools">
-                      <Button color="link" onClick={() => this.handleVotePost(match.params.id, 'upVote')}><i className="fa fa-thumbs-up" aria-hidden="true"></i></Button>
-                      <Button color="link"onClick={() => this.handleVotePost(match.params.id, 'downVote')}><i className="fa fa-thumbs-down" aria-hidden="true"></i></Button>
-                    </ButtonGroup>
-                  </div>
-                  <CommentForm parentId={match.params.id} formStatus="new" />
-                  <CommentList commentCount={ currentPost.commentCount } parentId={match.params.id}/>
-                </Col>
-              </Row>
-            </Container>
-          </div>
-        </div>
-        )}
-      </article>
-    )
+              <div className="entry-footer">
+                <Container>
+                  <Row>
+                    <Col sm="12" md={{ size: 8, offset: 2 }}>
+                      <div className="entry-votes">
+                        <h3 className="votes-count">Votes: { currentPost.voteScore }</h3>
+                        <ButtonGroup className="votes-tools">
+                          <Button color="link" onClick={() => this.handleVotePost(match.params.id, 'upVote')}><i className="fa fa-thumbs-up" aria-hidden="true"></i></Button>
+                          <Button color="link" onClick={() => this.handleVotePost(match.params.id, 'downVote')}><i className="fa fa-thumbs-down" aria-hidden="true"></i></Button>
+                        </ButtonGroup>
+                      </div>
+                      <CommentForm parentId={match.params.id} formStatus="new" />
+                      <CommentList commentCount={ currentPost.commentCount } parentId={match.params.id}/>
+                    </Col>
+                  </Row>
+                </Container>
+              </div>
+            </div>
+          </article>
+        )
+      }
+    }
   }
 }
 
-function mapStateToProps({ currentPost }) {
+function mapStateToProps({ currentPost, loadingPosts }) {
   return {
-    currentPost
+    currentPost,
+    loadingPosts
   }
 }
 

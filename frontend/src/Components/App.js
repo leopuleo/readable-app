@@ -16,7 +16,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={ List }  />
             <Route path="/category/:category/" component={ List } />
-            <Route path="/post/:slug/:id/" component={ PostSingle } />
+            <Route path="/post/:id/:slug/" component={ PostSingle } />
             <Route exact path="/new" component={ PostNew } />
             <Route exact path="/edit/:id" component={ PostEdit } />
           </Switch>
@@ -26,6 +26,5 @@ class App extends Component {
     );
   }
 }
-
 
 export default App

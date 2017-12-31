@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import sentenceCase from 'sentence-case'
 import PropTypes from 'prop-types'
 
-class Banner extends Component {
+class PageTitle extends Component {
 
   /*
    * Defining the props for this component
@@ -20,4 +20,4 @@ class Banner extends Component {
     )
   }
 }
-export default Banner
+export default PageTitle
