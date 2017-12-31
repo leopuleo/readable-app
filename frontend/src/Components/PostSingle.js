@@ -6,7 +6,7 @@ import CommentList from './CommentList'
 import CommentForm from './CommentForm'
 import 'font-awesome/css/font-awesome.min.css'
 import { Link } from 'react-router-dom'
-import { Row, Col, Alert, Container } from 'reactstrap'
+import { Row, Col, Alert, Container, ButtonGroup, Button } from 'reactstrap'
 import sentenceCase from 'sentence-case'
 import '../Assets/styles/single.css'
 
@@ -51,27 +51,31 @@ class PostSingle extends Component {
           </div>
           <div className="entry-content">
             <Container>
-            <Row>
-              <Col sm="12" md={{ size: 8, offset: 2 }}>
-                <div dangerouslySetInnerHTML={this.createMarkup(currentPost.body)} />
-              </Col>
-            </Row>
+              <Row>
+                <Col sm="12" md={{ size: 8, offset: 2 }}>
+                  <div dangerouslySetInnerHTML={this.createMarkup(currentPost.body)} />
+                  <ButtonGroup className="entry-tools">
+                    <Button color="link" tag={Link} to={`/edit/${currentPost.id}`}><i className="fa fa-pencil" aria-hidden="true"></i></Button>
+                    <Button color="link" onClick={() => this.handleDeletePost(match.params.id)}><i className="fa fa-trash" aria-hidden="true"></i></Button>
+                  </ButtonGroup>
+                </Col>
+              </Row>
             </Container>
           </div>
           <div className="entry-footer">
             <Container>
               <Row>
-                <Col sm="12" md={{ size: 6 }}>
+                <Col sm="12" md={{ size: 8, offset: 2 }}>
+                  <div className="entry-votes">
+                    <h3 className="votes-count">Votes: { currentPost.voteScore }</h3>
+                    <ButtonGroup className="votes-tools">
+                      <Button color="link" onClick={() => this.handleVotePost(match.params.id, 'upVote')}><i className="fa fa-thumbs-up" aria-hidden="true"></i></Button>
+                      <Button color="link"onClick={() => this.handleVotePost(match.params.id, 'downVote')}><i className="fa fa-thumbs-down" aria-hidden="true"></i></Button>
+                    </ButtonGroup>
+                  </div>
                   <CommentForm parentId={match.params.id} formStatus="new" />
-                </Col>
-                <Col sm="12" md={{ size: 6 }}>
                   <CommentList commentCount={ currentPost.commentCount } parentId={match.params.id}/>
                 </Col>
-                  <p>Votes: { currentPost.voteScore }</p>
-                  <Link to={`/edit/${currentPost.id}`}><i className="fa fa-pencil" aria-hidden="true"></i></Link>
-                  <button onClick={() => this.handleDeletePost(match.params.id)}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
-                  <button onClick={() => this.handleVotePost(match.params.id, 'upVote')}><i className="fa fa-thumbs-o-up" aria-hidden="true"></i></button>
-                  <button onClick={() => this.handleVotePost(match.params.id, 'downVote')}><i className="fa fa-thumbs-o-down" aria-hidden="true"></i></button>
               </Row>
             </Container>
           </div>

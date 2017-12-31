@@ -11,7 +11,7 @@ class CommentList extends Component {
    */
   static propTypes = {
     parentId: PropTypes.string.isRequired,
-    commentCount: PropTypes.string.isRequired,
+    commentCount: PropTypes.number.isRequired,
   }
 
   componentDidMount() {

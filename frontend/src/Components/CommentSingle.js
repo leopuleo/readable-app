@@ -38,8 +38,8 @@ class CommentSingle extends Component {
             <span className="comment-date">{ commentDate }</span>
             <div className="comment-body">{comment.body}</div>
             <ButtonGroup className="comment-tools" size="sm">
-              <Button color="link" onClick={() => this.handleDeleteComment(comment.id)}><i className="fa fa-trash-o" aria-hidden="true"></i></Button>
-              <Button color="link" onClick={() => this.handleUpdateComment(comment.id)}><i className="fa fa-pencil" aria-hidden="true"></i></Button>
+              <Button color="link" onClick={() => this.handleDeleteComment(comment.id)}>Delete</Button>
+              <Button color="link" onClick={() => this.handleUpdateComment(comment.id)}>Edit</Button>
             </ButtonGroup>
           </div>
         }

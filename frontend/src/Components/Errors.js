@@ -7,7 +7,7 @@ class Errors extends Component {
     return (
       <Alert color="danger">
         {notices.map((notice) => (
-          <p key={notice}>{notice}</p>
+          <div key={notice}>{notice}</div>
         ))}
       </Alert>
 

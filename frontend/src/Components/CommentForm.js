@@ -37,11 +37,11 @@ class CommentForm extends Component {
 
   handleValidation = (values) => {
     let errors = []
-    if (!values.body || values.body.trim() === '') {
-      errors.push('Enter the body')
-    }
     if(!values.author || values.author.trim() === '') {
-      errors.push('Enter the author name')
+      errors.push('Enter your name')
+    }
+    if (!values.body || values.body.trim() === '') {
+      errors.push('Enter your comment')
     }
     return errors
   }
@@ -91,8 +91,8 @@ class CommentForm extends Component {
     const { formStatus } =this.props
     const disabled = formStatus === 'edit' ? {'disabled' : 'disabled'} : {}
     return (
-      <div className="entry-comment-form">
-        <h3 className="entry-comment-form-title">Leave a comment</h3>
+      <div className="comment-form">
+        { formStatus === 'new' ? <h3 className="comment-form-title">Leave a comment</h3> : '' }
         { errors.length > 0 ? <Errors notices={errors} /> : '' }
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
