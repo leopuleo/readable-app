@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 import PostList from './PostList'
 import Banner from './Banner'
 import PostListOrder from './PostListOrder'
+import { Container } from 'reactstrap'
+import '../Assets/styles/list.css'
 
 class List extends Component {
 
@@ -27,11 +29,11 @@ class List extends Component {
     const postList = this.generatePostList(posts, match.params.category)
     return (
       <div className="list">
-        <Banner title={ match.params.category } />
-        <div className="list-content page-content">
+        <Container>
+          <Banner title={ match.params.category } />
           <PostListOrder />
           <PostList postList={ postList } />
-        </div>
+        </Container>
       </div>
     )
   }

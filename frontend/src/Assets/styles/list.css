@@ -1,0 +1,30 @@
+/* Sort List Order */
+.sort-list-order {
+  margin-bottom: 10px;
+}
+
+/* List Posts */
+.post-list-content {
+  margin-bottom: 40px;
+}
+.post-list-content a:hover,
+.post-list-content a {
+  color: #333;
+}
+.post-list-image {
+  height: 320px;
+  margin-bottom: 20px;
+  background-color: rgba(0, 0, 0, 0.9);
+  background-image: url(https://images.unsplash.com/photo-1489389944381-3471b5b30f04?auto=format&fit=crop&w=1350&q=80);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.post-list-title {
+  margin-bottom: 10px;
+}
+.post-list-updated {
+  display: block;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+}

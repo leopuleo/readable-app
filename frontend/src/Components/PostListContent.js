@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import truncate from 'truncate'
 import striptags from 'striptags'
 import moment from 'moment'
+import { Col } from 'reactstrap'
 
 class PostListContent extends Component {
 
@@ -30,16 +31,18 @@ class PostListContent extends Component {
     const slug = '/post/' + this.slugifyPost(post.title) + '/' + post.id + '/'
     const postDate = moment(post.timestamp).format("DD/MM/YYYY")
     return(
-       <article className="post-list-content">
-        <div className="entry-image"></div>
-        <header className="entry-header">
-          <h2><Link to={ slug }>{ post.title }</Link></h2>
-          <time className="updated" dateTime="{ postDate }">{ postDate }</time>
-        </header>
-        <div className="entry-content">
-          { truncate(striptags(post.body), 200) }
-        </div>
-       </article>
+      <Col xs="12" sm="6">
+        <article className="post-list-content">
+          <div className="post-list-image"></div>
+          <header className="post-list-header">
+            <h2><Link to={ slug }>{ post.title }</Link></h2>
+            <time className="post-list-updated">{ postDate }</time>
+          </header>
+          <div className="post-list-content">
+            { truncate(striptags(post.body), 200) }
+          </div>
+        </article>
+      </Col>
     )
   }
 }
