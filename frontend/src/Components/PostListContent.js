@@ -7,7 +7,7 @@ import striptags from 'striptags'
 import PostInfo from './PostInfo'
 import PostActions from './PostActions'
 import PostVote from './PostVote'
-import { Col } from 'reactstrap'
+import { Row, Col, Card, CardBody, CardTitle, CardText } from 'reactstrap'
 
 class PostListContent extends Component {
   /*
@@ -32,20 +32,28 @@ class PostListContent extends Component {
     const { post } = this.props
     const slug = '/post/' + this.slugifyPost(post.title) + '/' + post.id + '/'
     return(
-      <Col xs="12" sm="6">
-        <article className="post-list-content">
-          <div className="post-list-image"></div>
-          <header className="post-list-header">
-            <h2><Link to={ slug }>{ post.title }</Link></h2>
-            <PostInfo post={post} />
-            <PostActions postId={post.id} />
-            <PostVote post={post} />
-          </header>
-          <div className="post-list-content">
-            { truncate(striptags(post.body), 200) }
-          </div>
-        </article>
-      </Col>
+      <Card className="post-list-content">
+        <div className="post-list-header">
+          <div className="post-list-image" />
+          <PostVote post={post} />
+        </div>
+        <CardBody>
+          <CardTitle><Link to={ slug }>{ post.title }</Link></CardTitle>
+          <CardText className="post-list-text">{ truncate(striptags(post.body), 200) }</CardText>
+          <CardText >
+            <small className="text-muted">
+              <Row>
+                <Col xs="6" sm="8">
+                  <PostInfo post={post} />
+                </Col>
+                <Col xs="6" sm="4">
+                  <PostActions postId={post.id} />
+                </Col>
+              </Row>
+            </small>
+          </CardText>
+        </CardBody>
+      </Card>
     )
   }
 }

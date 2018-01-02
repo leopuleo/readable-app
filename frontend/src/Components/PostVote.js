@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { updateSinglePostVote } from '../Actions/Posts'
 import PropTypes from 'prop-types'
-import { ButtonGroup, Button } from 'reactstrap'
+import { Button } from 'reactstrap'
 
 class PostVote extends Component {
 
@@ -27,11 +27,11 @@ class PostVote extends Component {
     const { post } = this.props
     return(
       <div className="entry-votes">
-        <p className="votes-count">Votes: { post.voteScore }</p>
-        <ButtonGroup className="votes-tools">
+        <div className="votes-tools">
           <Button color="link" onClick={() => this.handleVotePost(post.id, 'upVote')}><i className="fa fa-thumbs-up" aria-hidden="true"></i></Button>
           <Button color="link" onClick={() => this.handleVotePost(post.id, 'downVote')}><i className="fa fa-thumbs-down" aria-hidden="true"></i></Button>
-        </ButtonGroup>
+        </div>
+        <span className="votes-count">{ post.voteScore }</span>
       </div>
     )
   }

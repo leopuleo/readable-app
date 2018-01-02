@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { deleteSinglePost } from '../Actions/Posts'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import { ButtonGroup, Button } from 'reactstrap'
+import { Button } from 'reactstrap'
 
 class PostActions extends Component {
 
@@ -26,10 +26,10 @@ class PostActions extends Component {
   render() {
     const { postId } = this.props
     return(
-      <ButtonGroup className="entry-tools">
+      <div className="entry-tools">
         <Button color="link" tag={Link} to={`/edit/${postId}`}><i className="fa fa-pencil" aria-hidden="true"></i></Button>
         <Button color="link" onClick={() => this.handleDeletePost(postId)}><i className="fa fa-trash" aria-hidden="true"></i></Button>
-      </ButtonGroup>
+      </div>
     )
   }
 }

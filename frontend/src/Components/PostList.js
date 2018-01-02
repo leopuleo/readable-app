@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PostListContent from './PostListContent'
 import PropTypes from 'prop-types'
-import { Row, Col, Alert } from 'reactstrap'
+import { CardColumns, Alert } from 'reactstrap'
 
 class PostList extends Component {
   /*
@@ -14,13 +14,13 @@ class PostList extends Component {
     const { postList } = this.props
     return(
        <div className="post-list">
-        <Row>
+        <CardColumns>
           {postList.length > 0 ? postList.map((post) => (
             <PostListContent key={post.id} post={post} />
           )) :
-            <Col><Alert color="warning">No posts found</Alert></Col>
+            <Alert color="warning">No posts found</Alert>
           }
-        </Row>
+        </CardColumns>
       </div>
     )
   }
