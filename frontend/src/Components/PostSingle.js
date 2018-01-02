@@ -8,6 +8,7 @@ import Loading from './Loading'
 import { Link } from 'react-router-dom'
 import { Row, Col, Alert, Container, ButtonGroup, Button } from 'reactstrap'
 import sentenceCase from 'sentence-case'
+import PostInfo from './PostInfo'
 import '../Assets/styles/single.css'
 
 class PostSingle extends Component {
@@ -62,7 +63,7 @@ class PostSingle extends Component {
                   <div className="entry-header">
                     <Container>
                       <h1 className="entry-title">{ currentPost.title }</h1>
-                      <p className="entry-info">Written by { currentPost.author } in <Link to={`/category/${currentPost.category}/`}>{ sentenceCase(currentPost.category) }</Link> - { postDate }</p>
+                      <PostInfo post={currentPost} />
                     </Container>
                   </div>
               </div>
