@@ -3,14 +3,12 @@ import sentenceCase from 'sentence-case'
 import PropTypes from 'prop-types'
 
 class PageTitle extends Component {
-
   /*
    * Defining the props for this component
    */
   static propTypes = {
     title: PropTypes.string,
   }
-
   render() {
     const { title } = this.props
     return (
