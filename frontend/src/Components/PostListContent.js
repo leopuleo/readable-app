@@ -8,7 +8,6 @@ import moment from 'moment'
 import { Col } from 'reactstrap'
 
 class PostListContent extends Component {
-
   /*
    * Defining the props for this component
    */
@@ -19,6 +18,7 @@ class PostListContent extends Component {
   /**
    * @description Generate the slug for post url from string
    * @param {string} string to slug
+   * @return {string} link slug
    */
   slugifyPost(string) {
     return slug(string, {

@@ -17,15 +17,29 @@ class PostSingle extends Component {
     getCurrentPost(match.params.id)
   }
 
+  /**
+   * @description Generate the HTML
+   * @param {string} Post content
+   * @return {string} HTML for post content
+   */
   createMarkup(body) {
     return {__html: body};
   }
 
+  /**
+   * @description Handle post deletion
+   * @param {string} Post id to delete
+   */
   handleDeletePost(id){
     const { deleteCurrentPost } = this.props
     deleteCurrentPost(id)
   }
 
+  /**
+   * @description Handle post vote
+   * @param {string} Post id to vote
+   * @param {string} Vote action: upVote, downVote
+   */
   handleVotePost(id, vote) {
     const { updateCurrentPostVote } = this.props
     updateCurrentPostVote(id, vote)

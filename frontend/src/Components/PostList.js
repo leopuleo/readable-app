@@ -4,14 +4,12 @@ import PropTypes from 'prop-types'
 import { Row, Col, Alert } from 'reactstrap'
 
 class PostList extends Component {
-
   /*
    * Defining the props for this component
    */
   static propTypes = {
     postList: PropTypes.array
   }
-
   render() {
     const { postList } = this.props
     return(
@@ -27,5 +25,4 @@ class PostList extends Component {
     )
   }
 }
-
 export default PostList

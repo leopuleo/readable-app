@@ -3,7 +3,6 @@ import PageTitle from './PageTitle'
 import PostForm from './PostForm'
 import { Container } from 'reactstrap'
 
-
 class PostNew extends Component {
   render() {
     return (

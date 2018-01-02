@@ -39,6 +39,11 @@ class PostForm extends Component {
     currentPost: PropTypes.object
   }
 
+  /**
+   * @description Handle post values Validation
+   * @param {array} Comment values
+   * @return {array} Errors
+   */
   handleValidation = (values) => {
     let errors = []
     if (!values.title || values.title.trim() === '') {
@@ -56,29 +61,32 @@ class PostForm extends Component {
     return errors
   }
 
+  /**
+   * Handling Post form submission
+   */
   handleSubmit = (e) => {
-    const {  formStatus, sendNewPost, updatePost } = this.props
+    const { formStatus, sendNewPost, updatePost } = this.props
+    const { id, timestamp, title, body, author, category } = this.state
     e.preventDefault()
     let errors = this.handleValidation(this.state)
     this.setState({ errors: errors })
     if(errors.length === 0) {
-
       if(formStatus === 'edit') {
         updatePost({
-          id: this.state.id,
-          title: this.state.title,
-          body: this.state.body
+          id: id,
+          title: title,
+          body: body
         }).then(() => {
           this.setState({ success: true })
         })
       } else {
         sendNewPost({
-          id: this.state.id,
-          timestamp: this.state.timestamp,
-          title: this.state.title,
-          body: this.state.body,
-          author: this.state.author,
-          category: this.state.category
+          id: id,
+          timestamp: timestamp,
+          title: title,
+          body: body,
+          author: author,
+          category: category
         }).then(() => {
           this.setState({ success: true })
         })
@@ -100,31 +108,31 @@ class PostForm extends Component {
 
   render() {
     const { categories, formStatus } = this.props
-    const { errors, success, id, title } = this.state
+    const { errors, success, id, title, body, category, author } = this.state
     const slug = '/post/' + this.slugifyPost(title) + '/' + id + '/'
     const disabled = formStatus === 'edit' ? {'disabled' : 'disabled'} : {}
     return (
       <div className="post-form">
         { errors.length > 0 ? <Errors notices={errors} /> : '' }
         { success ?
-          <Alert color="success">Post saved. Visit the <Link to={ slug }>post</Link></Alert>
+          <Alert color="success">Post saved. Visit the <Link to={ slug }>post</Link>.</Alert>
         : ''}
         <Form onSubmit={this.handleSubmit}>
           <Row>
             <Col sm="12">
               <FormGroup>
                 <Label for="title" hidden>Title</Label>
-                <Input type="text" name="title" id="postTitle" placeholder="Insert the post title" value={this.state.title} onChange={e => this.setState({ title: e.target.value })} />
+                <Input type="text" name="title" id="postTitle" placeholder="Insert the post title" value={ title } onChange={e => this.setState({ title: e.target.value })} />
+                { title ?
+                  <small><strong>Link preview:</strong> { window.location.protocol + '//' + window.location.host + slug }</small>
+                : '' }
               </FormGroup>
-              { title ?
-                <small><strong>Slug:</strong> {slug}</small>
-              : '' }
             </Col>
           </Row>
           <Row>
             <Col sm="9">
               <Editor
-                initialValue={this.state.body}
+                initialValue={ body }
                 onChange={e => this.setState({ body: e.target.getContent() })}
                 init={{
                   plugins: 'link image code fullscreen',
@@ -133,10 +141,9 @@ class PostForm extends Component {
               />
             </Col>
             <Col sm="3">
-
               <FormGroup>
                 <Label for="selectCategory">Select a category</Label>
-                <Input {...disabled} type="select" name="selectCategory" id="selectCategory" value={this.state.category} onChange={e => this.setState({ category: e.target.value })}>
+                <Input {...disabled} type="select" name="selectCategory" id="selectCategory" value={ category } onChange={e => this.setState({ category: e.target.value })}>
                   <option value="">-- Select a category --</option>
                   {categories.length > 0 && categories.map((category) => (
                     <option value={category.path} key={category.path}>{sentenceCase(category.name)}</option>
@@ -146,9 +153,8 @@ class PostForm extends Component {
 
               <FormGroup >
                 <Label for="author">Author</Label>
-                <Input {...disabled} type="text" name="author" id="author" placeholder="Insert the author name"  value={this.state.author} onChange={e => this.setState({ author: e.target.value })} />
+                <Input {...disabled} type="text" name="author" id="author" placeholder="Insert the author name"  value={ author } onChange={e => this.setState({ author: e.target.value })} />
               </FormGroup>
-
               <Button color="primary" size="lg" block>Save post</Button>
             </Col>
           </Row>
