@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import categories from './Categories'
-import { loadingPosts, posts, currentPost } from './Posts'
+import { loadingPosts, posts, currentPost, postsOrder } from './Posts'
 import { loadingComments, currentPostComments, editingComment } from './Comments'
 
 export default combineReducers({
@@ -11,4 +11,5 @@ export default combineReducers({
   loadingComments,
   currentPostComments,
   editingComment,
+  postsOrder
 })

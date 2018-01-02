@@ -6,12 +6,17 @@ import { FormGroup, Label, Input, Row,  Col } from 'reactstrap';
 
 class PostListOrder extends Component {
 
+  /**
+   * @description Handle post order
+   * @param {string} Order to sort the posts
+   */
   handleSortOrder(value) {
     const { sortPost } = this.props
     sortPost(value)
   }
 
   render() {
+    const { postsOrder } = this.props
     return (
       <div className="sort-list-order">
         <Row>
@@ -19,8 +24,7 @@ class PostListOrder extends Component {
             <FormGroup row >
               <Label for="sortOrder" sm={4}>Order</Label>
               <Col sm={8}>
-                <Input type="select" name="sortOrder" id="sortOrder" onChange={(e) => this.handleSortOrder(e.target.value)}>
-                  <option value="default">Default</option>
+                <Input type="select" name="sortOrder" id="sortOrder" value={postsOrder} onChange={(e) => this.handleSortOrder(e.target.value)}>
                   <option value="timestamp">Date</option>
                   <option value="voteScore">Score</option>
                   <option value="title">Title</option>
@@ -34,6 +38,12 @@ class PostListOrder extends Component {
   }
 }
 
+function mapStateToProps({ postsOrder }) {
+  return {
+    postsOrder
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {
     sortPost: (orderBy) => dispatch(updatePostOrder(orderBy))
@@ -41,7 +51,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(PostListOrder)
 

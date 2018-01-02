@@ -88,3 +88,13 @@ export function currentPost(state = {}, action) {
       return state
   }
 }
+
+export function postsOrder(state = 'timestamp', action) {
+  const { type, orderyBy} = action;
+  switch (type) {
+    case SORT_POST:
+      return orderyBy
+    default :
+      return state
+  }
+}
