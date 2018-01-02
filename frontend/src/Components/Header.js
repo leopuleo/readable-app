@@ -26,27 +26,27 @@ class Header extends Component {
     const { categories } = this.props
     return (
       <header className="site-header">
-        <Container>
           <Navbar color="faded" light expand="md">
-            <NavbarBrand tag={Link} to="/">Readable App</NavbarBrand>
-            <NavbarToggler onClick={this.toggle} />
-            <Collapse isOpen={this.state.isOpen} navbar>
-              <Nav className="ml-auto" navbar>
-                <NavItem key='home'>
-                  <NavLink tag={Link} to="/">Home</NavLink>
-                </NavItem>
-                {categories.length !== 0 && categories.map((category) => (
-                  <NavItem key={category.path}>
-                    <NavLink tag={Link} to={`/category/${category.path}/`}>{sentenceCase(category.name)}</NavLink>
+            <Container>
+              <NavbarBrand tag={Link} to="/">Readable App</NavbarBrand>
+              <NavbarToggler onClick={this.toggle} />
+              <Collapse isOpen={this.state.isOpen} navbar>
+                <Nav className="ml-auto" navbar>
+                  <NavItem key='home'>
+                    <NavLink tag={Link} to="/">Home</NavLink>
                   </NavItem>
-                ))}
-                <NavItem key='new'>
-                  <Button tag={Link} to="/new" outline color="secondary">New post</Button>
-                </NavItem>
-              </Nav>
-            </Collapse>
+                  {categories.length !== 0 && categories.map((category) => (
+                    <NavItem key={category.path}>
+                      <NavLink tag={Link} to={`/category/${category.path}/`}>{sentenceCase(category.name)}</NavLink>
+                    </NavItem>
+                  ))}
+                  <NavItem key='new'>
+                    <Button tag={Link} to="/new" outline color="secondary">New post</Button>
+                  </NavItem>
+                </Nav>
+              </Collapse>
+            </Container>
           </Navbar>
-        </Container>
       </header>
     )
   }
