@@ -35,18 +35,20 @@ class PostSingle extends Component {
         return (<Container><Alert color="warning">Post deleted</Alert></Container>)
       } else {
         return (
-          <article className="single-post">
-            <div className="entry-single-post">
-              <div className="entry-hero">
-                <div className="entry-overlay"></div>
-                  <div className="entry-header">
+          <article className="post-single">
+            <div className="entry-post-single">
+              <div className="post-single-hero">
+                <div className="post-single-image" />
+                <PostVote post={currentPost} />
+                <div className="post-single-overlay" />
+                  <div className="post-single-header">
                     <Container>
-                      <h1 className="entry-title">{ currentPost.title }</h1>
+                      <h1 className="post-single-title">{ currentPost.title }</h1>
                       <PostInfo post={currentPost} />
                     </Container>
                   </div>
               </div>
-              <div className="entry-content">
+              <div className="post-single-content">
                 <Container>
                   <Row>
                     <Col sm="12" md={{ size: 8, offset: 2 }}>
@@ -56,11 +58,10 @@ class PostSingle extends Component {
                   </Row>
                 </Container>
               </div>
-              <div className="entry-footer">
+              <div className="post-single-footer">
                 <Container>
                   <Row>
                     <Col sm="12" md={{ size: 8, offset: 2 }}>
-                      <PostVote post={currentPost} />
                       <CommentForm parentId={currentPost.id} formStatus="new" />
                       <CommentList commentCount={ currentPost.commentCount } parentId={currentPost.id} />
                     </Col>

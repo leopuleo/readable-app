@@ -4,17 +4,10 @@
 }
 
 /* List Posts */
-.card-columns {
-  column-count: 1!important;
+.post-list-col {
+  margin-bottom: 30px;
 }
-@media screen and (min-width: 768px) {
-  .card-columns {
-    column-count: 2!important;
-  }
-}
-.post-list-content {
-  margin-bottom: 40px;
-}
+
 .post-list-content a:hover,
 .post-list-content a {
   color: #333;
