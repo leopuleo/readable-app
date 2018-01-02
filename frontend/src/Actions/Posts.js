@@ -1,5 +1,4 @@
 import { getPosts, getSinglePost, sendNewPost, updatePost, deletePost, updateVotesPost } from '../Utils/Api'
-import { getRandomPhoto } from '../Utils/Unsplash'
 
 export const LOADING_POSTS = 'LOADING_POSTS'
 export const RECEIVE_POSTS = 'RECEIVE_POSTS'
@@ -9,32 +8,11 @@ export const UPDATE_POST = 'UPDATE_POST'
 export const DELETE_POST = 'DELETE_POST'
 export const UPDATE_VOTE = 'UPDATE_VOTE'
 export const SORT_POST = 'SORT_POST'
-export const GET_RANDOM_PHOTO = 'GET_RANDOM_PHOTO'
 
 export const loadingPosts = status => ({
   type: LOADING_POSTS,
   status
 })
-
-export const receiveRandomPhoto = photo  => ({
-  type: GET_RANDOM_PHOTO,
-  photo
-})
-
-export const fetchRandomPhoto = posts => dispatch => {
-  posts.map(post => {
-    if (typeof(post.photo) === 'undefined') {
-      dispatch(loadingPosts(true))
-      getRandomPhoto().then( (photo) => {
-        post.photo = photo
-        dispatch(receiveRandomPhoto(photo))
-      }).catch(err => {
-        console.log('Error receiving photos from Unsplash')
-      })
-      dispatch(loadingPosts(false))
-    }
-  })
-}
 
 export const receivePosts = posts => ({
   type: RECEIVE_POSTS,
@@ -45,7 +23,6 @@ export const fetchPosts = () => dispatch => {
   dispatch(loadingPosts(true))
   getPosts().then( (posts)  => {
     dispatch(receivePosts(posts))
-    //dispatch(fetchRandomPhoto(posts))
     dispatch(loadingPosts(false))
   })
 }

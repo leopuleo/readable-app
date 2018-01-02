@@ -38,7 +38,7 @@ class PostSingle extends Component {
           <article className="post-single">
             <div className="entry-post-single">
               <div className="post-single-hero">
-                <div className="post-single-image" />
+                <div className="post-list-image" />
                 <PostVote post={currentPost} />
                 <div className="post-single-overlay" />
                   <div className="post-single-header">
