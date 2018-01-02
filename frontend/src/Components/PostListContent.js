@@ -6,6 +6,7 @@ import truncate from 'truncate'
 import striptags from 'striptags'
 import PostInfo from './PostInfo'
 import PostActions from './PostActions'
+import PostVote from './PostVote'
 import { Col } from 'reactstrap'
 
 class PostListContent extends Component {
@@ -38,6 +39,7 @@ class PostListContent extends Component {
             <h2><Link to={ slug }>{ post.title }</Link></h2>
             <PostInfo post={post} />
             <PostActions postId={post.id} />
+            <PostVote post={post} />
           </header>
           <div className="post-list-content">
             { truncate(striptags(post.body), 200) }

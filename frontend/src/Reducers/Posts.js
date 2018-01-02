@@ -46,10 +46,13 @@ export function posts(state = [], action) {
         ...state.filter(p => p.id !== action.post.id)
       ]
     case UPDATE_VOTE :
-      return [
-        ...state.filter(p => p.id !== action.post.id),
-        action.post
-      ]
+      const updatedPosts = state.map(item => {
+        if(item.id === action.post.id) {
+          return {...item, ...action.post}
+        }
+        return item
+      })
+      return updatedPosts
     case SORT_POST :
       return [
         ...state.sort(dynamicSort(action.orderyBy))

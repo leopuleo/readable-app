@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchSinglePost, updateSinglePostVote } from '../Actions/Posts'
+import { fetchSinglePost } from '../Actions/Posts'
 import CommentList from './CommentList'
 import CommentForm from './CommentForm'
 import PostInfo from './PostInfo'
 import PostActions from './PostActions'
+import PostVote from './PostVote'
 import Loading from './Loading'
-import { Row, Col, Alert, Container, ButtonGroup, Button } from 'reactstrap'
+import { Row, Col, Alert, Container } from 'reactstrap'
 import '../Assets/styles/single.css'
 
 class PostSingle extends Component {
@@ -25,18 +26,8 @@ class PostSingle extends Component {
     return {__html: body};
   }
 
-  /**
-   * @description Handle post vote
-   * @param {string} Post id to vote
-   * @param {string} Vote action: upVote, downVote
-   */
-  handleVotePost(id, vote) {
-    const { updateCurrentPostVote } = this.props
-    updateCurrentPostVote(id, vote)
-  }
-
   render() {
-    const {loadingPosts, currentPost, match} = this.props
+    const { loadingPosts, currentPost } = this.props
     if(loadingPosts) {
       return (<Loading />)
     } else {
@@ -69,15 +60,9 @@ class PostSingle extends Component {
                 <Container>
                   <Row>
                     <Col sm="12" md={{ size: 8, offset: 2 }}>
-                      <div className="entry-votes">
-                        <h3 className="votes-count">Votes: { currentPost.voteScore }</h3>
-                        <ButtonGroup className="votes-tools">
-                          <Button color="link" onClick={() => this.handleVotePost(match.params.id, 'upVote')}><i className="fa fa-thumbs-up" aria-hidden="true"></i></Button>
-                          <Button color="link" onClick={() => this.handleVotePost(match.params.id, 'downVote')}><i className="fa fa-thumbs-down" aria-hidden="true"></i></Button>
-                        </ButtonGroup>
-                      </div>
-                      <CommentForm parentId={match.params.id} formStatus="new" />
-                      <CommentList commentCount={ currentPost.commentCount } parentId={match.params.id}/>
+                      <PostVote post={currentPost} />
+                      <CommentForm parentId={currentPost.id} formStatus="new" />
+                      <CommentList commentCount={ currentPost.commentCount } parentId={currentPost.id} />
                     </Col>
                   </Row>
                 </Container>
@@ -99,8 +84,7 @@ function mapStateToProps({ currentPost, loadingPosts }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    getCurrentPost: (id) => dispatch(fetchSinglePost(id)),
-    updateCurrentPostVote: (id, vote) => dispatch(updateSinglePostVote(id, vote))
+    getCurrentPost: (id) => dispatch(fetchSinglePost(id))
   }
 }
 
