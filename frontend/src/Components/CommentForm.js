@@ -25,7 +25,6 @@ class CommentForm extends Component {
     this.resetState = this.resetState.bind(this)
   }
 
-
   /*
    * Defining the props for this component
    */
@@ -35,6 +34,11 @@ class CommentForm extends Component {
     currentComment: PropTypes.object
   }
 
+  /**
+   * @description Handle Comment Validation
+   * @param {array} Comment values
+   * @return {array} Errors
+   */
   handleValidation = (values) => {
     let errors = []
     if(!values.author || values.author.trim() === '') {
@@ -46,6 +50,9 @@ class CommentForm extends Component {
     return errors
   }
 
+  /**
+   * Resetting the state
+   */
   resetState = () => {
     const { parentId } = this.props
     this.setState({
@@ -58,27 +65,31 @@ class CommentForm extends Component {
     })
   }
 
+  /**
+   * Handling Comment form submission
+   */
   handleSubmit = (e) => {
-    const {  formStatus, sendNewComment, sendUpdateComment, editCommentStatus } = this.props
+    const { formStatus, sendNewComment, sendUpdateComment, editCommentStatus } = this.props
+    const { id, timestamp, body, author, parentId } = this.state
     e.preventDefault()
     let errors = this.handleValidation(this.state)
     this.setState({ errors: errors })
     if(errors.length === 0) {
       if(formStatus === 'edit') {
         sendUpdateComment({
-          id: this.state.id,
-          body: this.state.body,
+          id: id,
+          body: body,
         }).then(() => {
           this.resetState()
           editCommentStatus(false)
         })
       } else {
         sendNewComment({
-          id: this.state.id,
-          timestamp: this.state.timestamp,
-          body: this.state.body,
-          author: this.state.author,
-          parentId: this.state.parentId
+          id: id,
+          timestamp: timestamp,
+          body: body,
+          author: author,
+          parentId: parentId
         }).then(() => {
           this.resetState()
         })
@@ -87,8 +98,8 @@ class CommentForm extends Component {
   }
 
   render() {
-    const { errors } = this.state
-    const { formStatus } =this.props
+    const { errors, author, body } = this.state
+    const { formStatus } = this.props
     const disabled = formStatus === 'edit' ? {'disabled' : 'disabled'} : {}
     return (
       <div className="comment-form">
@@ -97,11 +108,11 @@ class CommentForm extends Component {
         <Form onSubmit={this.handleSubmit}>
           <FormGroup>
             <Label for="commentAuthor">Author</Label>
-            <Input {...disabled} type="text" name="commentAuthor" id="commentAuthor" placeholder="Enter your name" value={this.state.author} onChange={e => this.setState({ author: e.target.value })} />
+            <Input {...disabled} type="text" name="commentAuthor" id="commentAuthor" placeholder="Enter your name" value={ author } onChange={e => this.setState({ author: e.target.value })} />
           </FormGroup>
           <FormGroup>
             <Label for="commentBody">Comment</Label>
-            <Input type="textarea" name="commentBody" id="commentBody" placeholder="Enter your comment" value={this.state.body} onChange={e => this.setState({ body: e.target.value })} />
+            <Input type="textarea" name="commentBody" id="commentBody" placeholder="Enter your comment" value={ body } onChange={e => this.setState({ body: e.target.value })} />
           </FormGroup>
           <Button outline color="primary">Submit</Button>
         </Form>

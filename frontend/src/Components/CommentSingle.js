@@ -15,14 +15,22 @@ class CommentSingle extends Component {
     comment: PropTypes.object.isRequired
   }
 
+  /**
+   * @description Handle comment deletion
+   * @param {string} Comment id to delete
+   */
   handleDeleteComment(id){
     const { deleteComment } = this.props
     deleteComment(id)
   }
 
-  handleUpdateComment() {
-    const { editCommentStatus, comment } = this.props
-    editCommentStatus(comment.id)
+  /**
+   * @description Handle comment edit
+   * @param {string} Comment id to edit
+   */
+  handleUpdateComment(id) {
+    const { editCommentStatus } = this.props
+    editCommentStatus(id)
   }
 
   render() {
@@ -38,8 +46,8 @@ class CommentSingle extends Component {
             <span className="comment-date">{ commentDate }</span>
             <div className="comment-body">{comment.body}</div>
             <ButtonGroup className="comment-tools" size="sm">
-              <Button color="link" onClick={() => this.handleDeleteComment(comment.id)}>Delete</Button>
               <Button color="link" onClick={() => this.handleUpdateComment(comment.id)}>Edit</Button>
+              <Button color="link" onClick={() => this.handleDeleteComment(comment.id)}>Delete</Button>
             </ButtonGroup>
           </div>
         }
