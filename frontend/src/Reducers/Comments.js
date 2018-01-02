@@ -43,10 +43,13 @@ export function currentPostComments(state = [], action) {
           action.comment
       ]
     case UPDATE_COMMENT :
-      return [
-        ...state.filter(c => c.id !== action.comment.id),
-        action.comment
-      ]
+      const updatedComments = state.map(item => {
+        if(item.id === action.comment.id) {
+          return {...item, ...action.post}
+        }
+        return item
+      })
+      return updatedComments
     default :
       return state
   }
