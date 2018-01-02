@@ -1,14 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchSinglePost, deleteSinglePost, updateSinglePostVote } from '../Actions/Posts'
-import moment from 'moment'
+import { fetchSinglePost, updateSinglePostVote } from '../Actions/Posts'
 import CommentList from './CommentList'
 import CommentForm from './CommentForm'
-import Loading from './Loading'
-import { Link } from 'react-router-dom'
-import { Row, Col, Alert, Container, ButtonGroup, Button } from 'reactstrap'
-import sentenceCase from 'sentence-case'
 import PostInfo from './PostInfo'
+import PostActions from './PostActions'
+import Loading from './Loading'
+import { Row, Col, Alert, Container, ButtonGroup, Button } from 'reactstrap'
 import '../Assets/styles/single.css'
 
 class PostSingle extends Component {
@@ -28,15 +26,6 @@ class PostSingle extends Component {
   }
 
   /**
-   * @description Handle post deletion
-   * @param {string} Post id to delete
-   */
-  handleDeletePost(id){
-    const { deleteCurrentPost } = this.props
-    deleteCurrentPost(id)
-  }
-
-  /**
    * @description Handle post vote
    * @param {string} Post id to vote
    * @param {string} Vote action: upVote, downVote
@@ -48,12 +37,11 @@ class PostSingle extends Component {
 
   render() {
     const {loadingPosts, currentPost, match} = this.props
-    const postDate = moment(currentPost.timestamp).format("DD/MM/YYYY")
     if(loadingPosts) {
       return (<Loading />)
     } else {
       if(currentPost.deleted) {
-        return (<Alert color="warning">Post deleted</Alert>)
+        return (<Container><Alert color="warning">Post deleted</Alert></Container>)
       } else {
         return (
           <article className="single-post">
@@ -72,10 +60,7 @@ class PostSingle extends Component {
                   <Row>
                     <Col sm="12" md={{ size: 8, offset: 2 }}>
                       <div dangerouslySetInnerHTML={this.createMarkup(currentPost.body)} />
-                      <ButtonGroup className="entry-tools">
-                        <Button color="link" tag={Link} to={`/edit/${currentPost.id}`}><i className="fa fa-pencil" aria-hidden="true"></i></Button>
-                        <Button color="link" onClick={() => this.handleDeletePost(match.params.id)}><i className="fa fa-trash" aria-hidden="true"></i></Button>
-                      </ButtonGroup>
+                      <PostActions postId={currentPost.id} />
                     </Col>
                   </Row>
                 </Container>
@@ -115,7 +100,6 @@ function mapStateToProps({ currentPost, loadingPosts }) {
 function mapDispatchToProps(dispatch) {
   return {
     getCurrentPost: (id) => dispatch(fetchSinglePost(id)),
-    deleteCurrentPost: (id) => dispatch(deleteSinglePost(id)),
     updateCurrentPostVote: (id, vote) => dispatch(updateSinglePostVote(id, vote))
   }
 }

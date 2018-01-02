@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import truncate from 'truncate'
 import striptags from 'striptags'
 import PostInfo from './PostInfo'
+import PostActions from './PostActions'
 import { Col } from 'reactstrap'
 
 class PostListContent extends Component {
@@ -35,7 +36,8 @@ class PostListContent extends Component {
           <div className="post-list-image"></div>
           <header className="post-list-header">
             <h2><Link to={ slug }>{ post.title }</Link></h2>
-            <PostInfo post={post}/>
+            <PostInfo post={post} />
+            <PostActions postId={post.id} />
           </header>
           <div className="post-list-content">
             { truncate(striptags(post.body), 200) }

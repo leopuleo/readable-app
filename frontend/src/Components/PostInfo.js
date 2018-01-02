@@ -18,9 +18,11 @@ class PostInfo extends Component {
     const postDate = moment(post.timestamp).format("DD/MM/YYYY")
     return(
       <div className="post-info">
-        Written by { post.author } in <Link to={`/category/${post.category}/`}>{ sentenceCase(post.category) }</Link> - { postDate }
+        <div className="post-author">Written by { post.author } in <Link to={`/category/${post.category}/`}>{ sentenceCase(post.category) }</Link></div>
+        <div className="post-date">Published on { postDate }</div>
       </div>
     )
   }
 }
+
 export default PostInfo
