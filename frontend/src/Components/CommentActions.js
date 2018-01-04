@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { deleteSingleComment, setEditingComment } from '../Actions/Comments'
-import { Link } from 'react-router-dom'
 import { Button } from 'reactstrap'
 
 class CommentActions extends Component {

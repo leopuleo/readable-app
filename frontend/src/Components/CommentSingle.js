@@ -4,7 +4,7 @@ import CommentForm from './CommentForm'
 import CommentActions from './CommentActions'
 import CommentVote from './CommentVote'
 import moment from 'moment'
-import { Row, Col, Button, ButtonGroup } from 'reactstrap'
+import { Row, Col } from 'reactstrap'
 
 class CommentSingle extends Component {
 
