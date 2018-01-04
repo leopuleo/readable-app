@@ -40,7 +40,7 @@ class PostListContent extends Component {
           </div>
           <CardBody>
             <CardTitle><Link to={ slug }>{ post.title }</Link></CardTitle>
-            <CardText className="post-list-text">{ truncate(striptags(post.body), 200) }</CardText>
+            <CardText className="post-list-text">{ truncate(striptags(post.body), 60) }</CardText>
             <div className="card-text">
               <small className="text-muted">
                 <Row>
