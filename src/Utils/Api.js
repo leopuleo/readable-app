@@ -1,6 +1,5 @@
-const api = "http://localhost:3001";
-let token = localStorage.token;
-
+const api = process.env.SERVER_URL || 'http://localhost:3001'
+let token = localStorage.token
 if(!token) {
   token = localStorage.token = Math.random().toString(36).substring(-8);
 }
