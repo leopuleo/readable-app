@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import slug from 'slug'
 import { Link } from 'react-router-dom'
 import truncate from 'truncate'
-import striptags from 'striptags'
 import PostInfo from './PostInfo'
 import PostActions from './PostActions'
 import PostVote from './PostVote'
@@ -33,7 +32,7 @@ class PostListContent extends Component {
           </div>
           <CardBody>
             <CardTitle><Link to={ slug }>{ post.title }</Link></CardTitle>
-            <CardText className="post-list-text">{ truncate(striptags(post.body), 60) }</CardText>
+            <CardText className="post-list-text">{ truncate(post.body, 60) }</CardText>
             <div className="card-text">
               <small className="text-muted">
                 <Row>
