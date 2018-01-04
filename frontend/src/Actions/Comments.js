@@ -1,4 +1,4 @@
-import { getSinglePostComments, sendNewComment, deleteComment, updateComment } from '../Utils/Api';
+import { getSinglePostComments, sendNewComment, deleteComment, updateComment, updateVotesComment } from '../Utils/Api';
 
 export const RECEIVE_SINGLE_COMMENTS = 'RECEIVE_SINGLE_COMMENTS'
 export const NEW_COMMENT = 'NEW_COMMENT'
@@ -6,6 +6,7 @@ export const DELETE_COMMENT = 'DELETE_COMMENT'
 export const UPDATE_COMMENT = 'UPDATE_COMMENT'
 export const EDITING_COMMENT = 'EDITING_COMMENT'
 export const LOADING_COMMENTS = 'LOADING_COMMENTS'
+export const UPDATE_COMMENT_VOTE = 'UPDATE_COMMENT_VOTE'
 
 export const loadingComments = status => ({
   type: LOADING_COMMENTS,
@@ -62,3 +63,13 @@ export const editingComment = status => ({
 
 export const setEditingComment = (status) => dispatch =>
   dispatch(editingComment(status))
+
+export const singleCommentVoteUpdated = (comment) => ({
+  type: UPDATE_COMMENT_VOTE,
+  comment
+})
+
+export const updateSingleCommentVote = (id, vote) => dispatch =>
+  updateVotesComment(id, vote).then( comment =>
+    dispatch(singleCommentVoteUpdated(comment))
+)

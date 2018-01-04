@@ -4,7 +4,8 @@ import {
   DELETE_COMMENT,
   UPDATE_COMMENT,
   EDITING_COMMENT,
-  LOADING_COMMENTS
+  LOADING_COMMENTS,
+  UPDATE_COMMENT_VOTE
 } from '../Actions/Comments';
 
 export function loadingComments(state = true, action) {
@@ -50,6 +51,14 @@ export function currentPostComments(state = [], action) {
         return item
       })
       return updatedComments
+    case UPDATE_COMMENT_VOTE :
+      const updatedCommentsVotes = state.map(item => {
+        if(item.id === action.comment.id) {
+          return {...item, ...action.comment}
+        }
+        return item
+      })
+      return updatedCommentsVotes
     default :
       return state
   }

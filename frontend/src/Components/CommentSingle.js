@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { deleteSingleComment, setEditingComment } from '../Actions/Comments'
 import CommentForm from './CommentForm'
+import CommentVote from './CommentVote'
 import moment from 'moment'
 import { Button, ButtonGroup } from 'reactstrap'
 
@@ -41,6 +42,7 @@ class CommentSingle extends Component {
               <Button color="link" onClick={() => this.handleUpdateComment(comment.id)}>Edit</Button>
               <Button color="link" onClick={() => this.handleDeleteComment(comment.id)}>Delete</Button>
             </ButtonGroup>
+            <CommentVote comment={comment} />
           </div>
         }
       </div>
