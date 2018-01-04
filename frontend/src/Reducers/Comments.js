@@ -45,7 +45,7 @@ export function currentPostComments(state = [], action) {
     case UPDATE_COMMENT :
       const updatedComments = state.map(item => {
         if(item.id === action.comment.id) {
-          return {...item, ...action.post}
+          return {...item, ...action.comment}
         }
         return item
       })
