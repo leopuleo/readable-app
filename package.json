@@ -21,9 +21,7 @@
     "redux-thunk": "^2.2.0",
     "sentence-case": "^2.1.1",
     "slug": "^0.9.1",
-    "striptags": "^3.1.1",
     "truncate": "^2.0.0",
-    "unsplash-js": "^4.8.0",
     "uuid": "^3.1.0"
   },
   "scripts": {
