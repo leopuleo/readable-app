@@ -1,16 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Editor } from '@tinymce/tinymce-react'
+//import { Editor } from '@tinymce/tinymce-react'
 import { Row, Col, Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
 import moment from 'moment'
 import uuidv1 from 'uuid/v1'
 import sentenceCase from 'sentence-case'
 import Errors from './Errors'
 import { createNewPost, updateSinglePost } from '../Actions/Posts'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 import slug from 'slug'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router-dom'
 
 class PostForm extends Component {
 
@@ -131,14 +130,10 @@ class PostForm extends Component {
           </Row>
           <Row>
             <Col sm="9">
-              <Editor
-                initialValue={ body }
-                onChange={e => this.setState({ body: e.target.getContent() })}
-                init={{
-                  plugins: 'link image code fullscreen',
-                  toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code '
-                }}
-              />
+              <FormGroup>
+                <Label for="body" hidden>Body</Label>
+                <Input type="textarea" name="body" id="body" placeholder="Enter your text" value={ body } onChange={e => this.setState({ body: e.target.value })} style={{ height: 300 }} />
+              </FormGroup>
             </Col>
             <Col sm="3">
               <FormGroup>
