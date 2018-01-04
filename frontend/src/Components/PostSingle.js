@@ -7,6 +7,7 @@ import PostInfo from './PostInfo'
 import PostActions from './PostActions'
 import PostVote from './PostVote'
 import Loading from './Loading'
+import NotFound from './NotFound'
 import { Row, Col, Alert, Container } from 'reactstrap'
 import '../Assets/styles/single.css'
 
@@ -28,10 +29,14 @@ class PostSingle extends Component {
 
   render() {
     const { loadingPosts, currentPost } = this.props
+    console.log(currentPost.length === 'undefined')
     if(loadingPosts) {
       return (<Loading />)
     } else {
-      if(currentPost.deleted) {
+      if(!currentPost.hasOwnProperty('id')) {
+        return (<NotFound />)
+      }
+      if(!currentPost.hasOwnProperty('id') || currentPost.deleted) {
         return (<Container><Alert color="warning">Post deleted</Alert></Container>)
       } else {
         return (

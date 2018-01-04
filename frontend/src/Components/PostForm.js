@@ -111,7 +111,7 @@ class PostForm extends Component {
             <Col sm="12">
               <FormGroup>
                 <Label for="title" hidden>Title</Label>
-                <Input type="text" name="title" id="postTitle" placeholder="Insert the post title" value={ title } onChange={e => this.setState({ title: e.target.value })} />
+                <Input type="text" name="title" id="postTitle" placeholder="Enter the post title" value={ title } onChange={e => this.setState({ title: e.target.value })} />
                 { title ?
                   <small><strong>Link preview:</strong> { window.location.protocol + '//' + window.location.host + slug }</small>
                 : '' }
@@ -122,12 +122,12 @@ class PostForm extends Component {
             <Col sm="9">
               <FormGroup>
                 <Label for="body" hidden>Body</Label>
-                <Input type="textarea" name="body" id="body" placeholder="Enter your text" value={ body } onChange={e => this.setState({ body: e.target.value })} style={{ height: 300 }} />
+                <Input type="textarea" name="body" id="body" placeholder="Enter the post body" value={ body } onChange={e => this.setState({ body: e.target.value })} style={{ height: 300 }} />
               </FormGroup>
             </Col>
             <Col sm="3">
               <FormGroup>
-                <Label for="selectCategory">Select a category</Label>
+                <Label for="selectCategory">Category</Label>
                 <Input {...disabled} type="select" name="selectCategory" id="selectCategory" value={ category } onChange={e => this.setState({ category: e.target.value })}>
                   <option value="">-- Select a category --</option>
                   {categories.length > 0 && categories.map((category) => (
@@ -138,7 +138,7 @@ class PostForm extends Component {
 
               <FormGroup >
                 <Label for="author">Author</Label>
-                <Input {...disabled} type="text" name="author" id="author" placeholder="Insert the author name"  value={ author } onChange={e => this.setState({ author: e.target.value })} />
+                <Input {...disabled} type="text" name="author" id="author" placeholder="Enter the post author"  value={ author } onChange={e => this.setState({ author: e.target.value })} />
               </FormGroup>
               <Button color="success" size="lg" block>Save post</Button>
             </Col>
