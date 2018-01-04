@@ -20,10 +20,11 @@ class CommentVote extends Component {
     return(
       <div className="entry-comment-votes">
         <div className="votes-comment-tools">
+          <span className="votes-comment-count">{ comment.voteScore }</span>
           <Button color="link" onClick={() => this.handleVoteComment(comment.id, 'upVote')}><i className="fa fa-thumbs-up" aria-hidden="true"></i></Button>
           <Button color="link" onClick={() => this.handleVoteComment(comment.id, 'downVote')}><i className="fa fa-thumbs-down" aria-hidden="true"></i></Button>
         </div>
-        <span className="votes-comment-count">{ comment.voteScore }</span>
+
       </div>
     )
   }

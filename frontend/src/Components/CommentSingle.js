@@ -1,30 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { deleteSingleComment, setEditingComment } from '../Actions/Comments'
 import CommentForm from './CommentForm'
+import CommentActions from './CommentActions'
 import CommentVote from './CommentVote'
 import moment from 'moment'
-import { Button, ButtonGroup } from 'reactstrap'
+import { Row, Col, Button, ButtonGroup } from 'reactstrap'
 
 class CommentSingle extends Component {
-
-  /**
-   * @description Handle comment deletion
-   * @param {string} Comment id to delete
-   */
-  handleDeleteComment(id){
-    const { deleteComment } = this.props
-    deleteComment(id)
-  }
-
-  /**
-   * @description Handle comment edit
-   * @param {string} Comment id to edit
-   */
-  handleUpdateComment(id) {
-    const { editCommentStatus } = this.props
-    editCommentStatus(id)
-  }
 
   render() {
     const { comment, editingComment } = this.props
@@ -36,13 +18,16 @@ class CommentSingle extends Component {
           :
           <div className="comment-content">
             <h6 className="comment-author">{comment.author} wrote:</h6>
-            <span className="comment-date">{ commentDate }</span>
+            <div className="comment-date">{ commentDate }</div>
             <div className="comment-body">{comment.body}</div>
-            <ButtonGroup className="comment-tools" size="sm">
-              <Button color="link" onClick={() => this.handleUpdateComment(comment.id)}>Edit</Button>
-              <Button color="link" onClick={() => this.handleDeleteComment(comment.id)}>Delete</Button>
-            </ButtonGroup>
-            <CommentVote comment={comment} />
+            <Row>
+              <Col xs="6">
+                <CommentActions comment={comment} />
+              </Col>
+              <Col xs="6">
+                <CommentVote comment={comment} />
+              </Col>
+            </Row>
           </div>
         }
       </div>
@@ -56,14 +41,7 @@ function mapStateToProps({ editingComment }) {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    deleteComment: (id) => dispatch(deleteSingleComment(id)),
-    editCommentStatus: (status) => dispatch(setEditingComment(status))
-  }
-}
-
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  null
 )(CommentSingle)
