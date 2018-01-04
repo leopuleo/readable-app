@@ -1,4 +1,4 @@
-const api = process.env.SERVER_URL || 'http://localhost:3001'
+const api = process.env.REACT_APP_API_URL || 'http://localhost:3001'
 let token = localStorage.token
 if(!token) {
   token = localStorage.token = Math.random().toString(36).substring(-8);
