@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import sentenceCase from 'sentence-case'
 import PropTypes from 'prop-types'
+import { Container } from 'reactstrap'
 
 class PageTitle extends Component {
   /*
@@ -12,9 +13,11 @@ class PageTitle extends Component {
   render() {
     const { title } = this.props
     return (
-      <header className="page-banner">
-       <h1>{ title ? sentenceCase(title) : 'Home' }</h1>
-      </header>
+      <div className="page-title">
+        <Container>
+          <h1>{ title ? sentenceCase(title) : 'Home' }</h1>
+        </Container>
+      </div>
     )
   }
 }

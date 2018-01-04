@@ -7,8 +7,8 @@ class PostNew extends Component {
   render() {
     return (
       <div className="post-new">
+        <PageTitle title='New post' />
         <Container>
-          <PageTitle title='New post' />
           <PostForm formStatus="new" />
         </Container>
       </div>

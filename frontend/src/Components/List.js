@@ -29,8 +29,10 @@ class List extends Component {
     const postList = this.generatePostList(posts, match.params.category)
     return (
       <div className="list">
-        <Container>
+        {match.params.category &&
           <PageTitle title={ match.params.category } />
+        }
+        <Container>
           <PostListOrder />
           <PostList postList={ postList } />
         </Container>

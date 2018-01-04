@@ -17,8 +17,8 @@ class PostEdit extends Component {
     const { loadingPosts } = this.props
     return (
       <div className="post-edit">
+        <PageTitle title='Edit post' />
         <Container>
-          <PageTitle title='Edit post' />
           { loadingPosts ? (
             <Loading />
           ) : (
