@@ -23,7 +23,7 @@ class PostListContent extends Component {
 
   render() {
     const { post } = this.props
-    const slug = '/post/' + this.slugifyPost(post.title) + '/' + post.id + '/'
+    const slug = '/post/' + post.category + '/' + this.slugifyPost(post.title) + '/' + post.id + '/'
     return(
       <Col className="post-list-col" xs="12" sm="6">
         <Card className="post-list-content">

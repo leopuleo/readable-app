@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PostListContent from './PostListContent'
-import { Row, Alert } from 'reactstrap'
+import { Row, Alert, Col } from 'reactstrap'
 
 class PostList extends Component {
 
@@ -12,7 +12,7 @@ class PostList extends Component {
           {postList.length > 0 ? postList.map((post) => (
             <PostListContent key={post.id} post={post} />
           )) :
-            <Alert color="warning">No posts found</Alert>
+            <Col sm="12"><Alert color="warning">No posts found</Alert></Col>
           }
         </Row>
       </div>

@@ -98,7 +98,7 @@ class PostForm extends Component {
   render() {
     const { categories, formStatus } = this.props
     const { errors, success, id, title, body, category, author } = this.state
-    const slug = '/post/' + this.slugifyPost(title) + '/' + id + '/'
+    const slug = '/post/' + category + '/' + this.slugifyPost(title) + '/' + id + '/'
     const disabled = formStatus === 'edit' ? {'disabled' : 'disabled'} : {}
     return (
       <div className="post-form">
@@ -140,7 +140,7 @@ class PostForm extends Component {
                 <Label for="author">Author</Label>
                 <Input {...disabled} type="text" name="author" id="author" placeholder="Insert the author name"  value={ author } onChange={e => this.setState({ author: e.target.value })} />
               </FormGroup>
-              <Button color="primary" size="lg" block>Save post</Button>
+              <Button color="success" size="lg" block>Save post</Button>
             </Col>
           </Row>
         </Form>
