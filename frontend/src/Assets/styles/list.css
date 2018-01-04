@@ -1,5 +1,6 @@
 /* Sort List Order */
 .sort-list-order {
+  margin-top: 30px;
   margin-bottom: 10px;
 }
 
@@ -22,11 +23,14 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.9);
-  background-image: url(https://images.unsplash.com/photo-1489389944381-3471b5b30f04?auto=format&fit=crop&w=1350&q=80);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: #111;
+  background: repeating-radial-gradient(
+    circle,
+    #111,
+    #111 10px,
+    #333 10px,
+    #333 20px
+  );
 }
 
 .post-list-content .post-list-text{

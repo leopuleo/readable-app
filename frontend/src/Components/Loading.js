@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import { Alert } from 'reactstrap'
 
 class Loading extends Component {
   render() {
     return (
-      <Alert color="warning">
+      <div className="loading">
         Loading...
-      </Alert>
+      </div>
 
     )
   }

@@ -28,7 +28,7 @@ class Header extends Component {
       <header className="site-header">
           <Navbar color="faded" light expand="md">
             <Container>
-              <NavbarBrand tag={Link} to="/">Readable App</NavbarBrand>
+              <NavbarBrand tag={Link} to="/">Readable</NavbarBrand>
               <NavbarToggler onClick={this.toggle} />
               <Collapse isOpen={this.state.isOpen} navbar>
                 <Nav className="ml-auto" navbar>
@@ -40,8 +40,8 @@ class Header extends Component {
                       <NavLink tag={Link} to={`/category/${category.path}/`}>{sentenceCase(category.name)}</NavLink>
                     </NavItem>
                   ))}
-                  <NavItem key='new'>
-                    <Button tag={Link} to="/new" outline color="secondary">New post</Button>
+                  <NavItem  key='new'>
+                    <Button tag={Link} to="/new" outline color="success" className="btn-new-post">New post</Button>
                   </NavItem>
                 </Nav>
               </Collapse>

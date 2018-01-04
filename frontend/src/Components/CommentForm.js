@@ -104,7 +104,7 @@ class CommentForm extends Component {
             <Label for="commentBody">Comment</Label>
             <Input type="textarea" name="commentBody" id="commentBody" placeholder="Enter your comment" value={ body } onChange={e => this.setState({ body: e.target.value })} />
           </FormGroup>
-          <Button outline color="primary">Submit</Button>
+          <Button outline color="success">Submit</Button>
         </Form>
       </div>
     )
