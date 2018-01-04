@@ -4,6 +4,7 @@ import PostNew from './PostNew'
 import PostEdit from './PostEdit'
 import PostSingle from './PostSingle'
 import List from './List'
+import NotFound from './NotFound'
 import { Switch, Route } from 'react-router-dom'
 
 class App extends Component {
@@ -18,6 +19,7 @@ class App extends Component {
             <Route path="/post/:category/:slug/:id/" component={ PostSingle } />
             <Route exact path="/new" component={ PostNew } />
             <Route exact path="/edit/:id" component={ PostEdit } />
+            <Route component={ NotFound } />
           </Switch>
         </div>
       </div>

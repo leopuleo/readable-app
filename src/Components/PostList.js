@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PostListContent from './PostListContent'
+import Loading from './Loading'
 import { Row, Alert, Col } from 'reactstrap'
 
 class PostList extends Component {
 
   render() {
-    const { postList } = this.props
+    const { postList, loadingPosts } = this.props
+    if(loadingPosts) {
+      return(<Loading/>)
+    }
     return(
        <div className="post-list">
         <Row>
@@ -20,4 +25,13 @@ class PostList extends Component {
   }
 }
 
-export default PostList
+function mapStateToProps({ loadingPosts }) {
+  return {
+    loadingPosts
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  null
+)(PostList)
