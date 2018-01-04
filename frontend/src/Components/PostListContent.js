@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import slug from 'slug'
 import { Link } from 'react-router-dom'
 import truncate from 'truncate'
@@ -10,12 +9,6 @@ import PostVote from './PostVote'
 import { Row, Col, Card, CardBody, CardTitle, CardText } from 'reactstrap'
 
 class PostListContent extends Component {
-  /*
-   * Defining the props for this component
-   */
-  static propTypes = {
-    post: PropTypes.object.isRequired
-  }
 
   /**
    * @description Generate the slug for post url from string

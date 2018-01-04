@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import moment from 'moment'
 import uuidv1 from 'uuid/v1'
-import PropTypes from 'prop-types'
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 import { createNewComment, updateSingleComment, setEditingComment } from '../Actions/Comments'
 import Errors from './Errors'
@@ -23,15 +22,6 @@ class CommentForm extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleValidation = this.handleValidation.bind(this)
     this.resetState = this.resetState.bind(this)
-  }
-
-  /*
-   * Defining the props for this component
-   */
-  static propTypes = {
-    formStatus: PropTypes.string.isRequired,
-    parentId: PropTypes.string.isRequired,
-    currentComment: PropTypes.object
   }
 
   /**

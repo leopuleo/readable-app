@@ -1,18 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchSingleComments } from '../Actions/Comments'
-import PropTypes from 'prop-types'
 import CommentSingle from './CommentSingle'
 
 class CommentList extends Component {
-
-  /*
-   * Defining the props for this component
-   */
-  static propTypes = {
-    parentId: PropTypes.string.isRequired,
-    commentCount: PropTypes.number.isRequired,
-  }
 
   componentDidMount() {
     const { parentId, getCurrentPostComments } = this.props

@@ -2,17 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { deleteSinglePost } from '../Actions/Posts'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import { Button } from 'reactstrap'
 
 class PostActions extends Component {
-
-  /*
-   * Defining the props for this component
-   */
-  static propTypes = {
-    postId: PropTypes.string.isRequired
-  }
 
   /**
    * @description Handle post deletion

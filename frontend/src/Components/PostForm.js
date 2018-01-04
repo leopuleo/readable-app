@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-//import { Editor } from '@tinymce/tinymce-react'
 import { Row, Col, Button, Form, FormGroup, Label, Input, Alert } from 'reactstrap'
 import moment from 'moment'
 import uuidv1 from 'uuid/v1'
@@ -9,7 +8,6 @@ import Errors from './Errors'
 import { createNewPost, updateSinglePost } from '../Actions/Posts'
 import { Link, withRouter } from 'react-router-dom'
 import slug from 'slug'
-import PropTypes from 'prop-types'
 
 class PostForm extends Component {
 
@@ -28,14 +26,6 @@ class PostForm extends Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this)
     this.handleValidation = this.handleValidation.bind(this)
-  }
-
-  /*
-   * Defining the props for this component
-   */
-  static propTypes = {
-    formStatus: PropTypes.string.isRequired,
-    currentPost: PropTypes.object
   }
 
   /**

@@ -1,19 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { deleteSingleComment, setEditingComment } from '../Actions/Comments'
-import PropTypes from 'prop-types'
 import CommentForm from './CommentForm'
 import moment from 'moment'
 import { Button, ButtonGroup } from 'reactstrap'
 
 class CommentSingle extends Component {
-
-  /*
-   * Defining the props for this component
-   */
-  static propTypes = {
-    comment: PropTypes.object.isRequired
-  }
 
   /**
    * @description Handle comment deletion

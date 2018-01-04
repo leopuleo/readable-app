@@ -1,15 +1,7 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { Alert } from 'reactstrap'
 
 class Errors extends Component {
-
-  /*
-   * Defining the props for this component
-   */
-  static propTypes = {
-    notices: PropTypes.array.isRequired,
-  }
 
   render() {
     const { notices } = this.props

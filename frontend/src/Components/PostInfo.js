@@ -1,17 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
 import moment from 'moment'
 import sentenceCase from 'sentence-case'
 
 class PostInfo extends Component {
-
-  /*
-   * Defining the props for this component
-   */
-  static propTypes = {
-    post: PropTypes.object.isRequired
-  }
 
   render() {
     const { post } = this.props

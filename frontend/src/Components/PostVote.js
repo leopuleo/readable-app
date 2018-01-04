@@ -1,17 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { updateSinglePostVote } from '../Actions/Posts'
-import PropTypes from 'prop-types'
 import { Button } from 'reactstrap'
 
 class PostVote extends Component {
-
-  /*
-   * Defining the props for this component
-   */
-  static propTypes = {
-    post: PropTypes.object.isRequired
-  }
 
   /**
    * @description Handle post vote
