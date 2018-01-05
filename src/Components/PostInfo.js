@@ -10,7 +10,7 @@ class PostInfo extends Component {
     const postDate = moment(post.timestamp).format("DD/MM/YYYY")
     return(
       <div className="post-info">
-        <div className="post-author">Written by { post.author } in <Link to={`/category/${post.category}/`}>{ sentenceCase(post.category) }</Link></div>
+        <div className="post-author">Written by { post.author } in <Link to={`/${post.category}/`}>{ sentenceCase(post.category) }</Link></div>
         <div><span className="post-date">Published on { postDate }</span> - <span className="post-comments-count">{post.commentCount} { post.commentCount === 1 ? 'comment' : 'comments' }</span></div>
       </div>
     )

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import slug from 'slug'
 import { Link } from 'react-router-dom'
 import truncate from 'truncate'
 import PostInfo from './PostInfo'
@@ -9,20 +8,9 @@ import { Row, Col, Card, CardBody, CardTitle, CardText } from 'reactstrap'
 
 class PostListContent extends Component {
 
-  /**
-   * @description Generate the slug for post url from string
-   * @param {string} string to slug
-   * @return {string} link slug
-   */
-  slugifyPost(string) {
-    return slug(string, {
-      lower: true
-    })
-  }
-
   render() {
     const { post } = this.props
-    const slug = '/post/' + post.category + '/' + this.slugifyPost(post.title) + '/' + post.id + '/'
+    const slug = '/' + post.category + '/' + post.id + '/'
     return(
       <Col className="post-list-col" xs="12" sm="6">
         <Card className="post-list-content">
@@ -40,7 +28,7 @@ class PostListContent extends Component {
                     <PostInfo post={post} />
                   </Col>
                   <Col xs="6" sm="4">
-                    <PostActions postId={post.id} />
+                    <PostActions post={post} />
                   </Col>
                 </Row>
               </small>

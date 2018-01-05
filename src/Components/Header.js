@@ -37,11 +37,11 @@ class Header extends Component {
                   </NavItem>
                   {categories.length !== 0 && categories.map((category) => (
                     <NavItem key={category.path}>
-                      <NavLink tag={Link} to={`/category/${category.path}/`}>{sentenceCase(category.name)}</NavLink>
+                      <NavLink tag={Link} to={`/${category.path}/`}>{sentenceCase(category.name)}</NavLink>
                     </NavItem>
                   ))}
                   <NavItem  key='new'>
-                    <Button tag={Link} to="/new" outline color="success" className="btn-new-post">New post</Button>
+                    <Button tag={Link} to="/new/" outline color="success" className="btn-new-post">New post</Button>
                   </NavItem>
                 </Nav>
               </Collapse>

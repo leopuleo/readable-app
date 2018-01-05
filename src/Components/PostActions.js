@@ -16,11 +16,11 @@ class PostActions extends Component {
   }
 
   render() {
-    const { postId } = this.props
+    const { post } = this.props
     return(
       <div className="entry-tools">
-        <Button color="link" tag={Link} to={`/edit/${postId}`}><i className="fa fa-pencil" aria-hidden="true"></i></Button>
-        <Button color="link" onClick={() => this.handleDeletePost(postId)}><i className="fa fa-trash" aria-hidden="true"></i></Button>
+        <Button color="link" tag={Link} to={`/${post.category}/${post.id}/edit/`}><i className="fa fa-pencil" aria-hidden="true"></i></Button>
+        <Button color="link" onClick={() => this.handleDeletePost(post.id)}><i className="fa fa-trash" aria-hidden="true"></i></Button>
       </div>
     )
   }

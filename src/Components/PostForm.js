@@ -7,7 +7,6 @@ import sentenceCase from 'sentence-case'
 import Errors from './Errors'
 import { createNewPost, updateSinglePost } from '../Actions/Posts'
 import { Link, withRouter } from 'react-router-dom'
-import slug from 'slug'
 
 class PostForm extends Component {
 
@@ -36,7 +35,7 @@ class PostForm extends Component {
   handleValidation = (values) => {
     let errors = []
     if (!values.title || values.title.trim() === '') {
-      errors.push('Enter a Title')
+      errors.push('Enter the title')
     }
     if (!values.body || values.body.trim() === '') {
       errors.push('Enter the body')
@@ -83,22 +82,10 @@ class PostForm extends Component {
     }
   }
 
-  /**
-   * @description Generate the slug for post url from string
-   * @param {string} string to slug
-   */
-  slugifyPost(string) {
-    if(string) {
-      return slug(string, {
-        lower: true
-      })
-    }
-  }
-
   render() {
     const { categories, formStatus } = this.props
     const { errors, success, id, title, body, category, author } = this.state
-    const slug = '/post/' + category + '/' + this.slugifyPost(title) + '/' + id + '/'
+    const slug = '/' + category + '/' + id + '/'
     const disabled = formStatus === 'edit' ? {'disabled' : 'disabled'} : {}
     return (
       <div className="post-form">
@@ -112,7 +99,7 @@ class PostForm extends Component {
               <FormGroup>
                 <Label for="title" hidden>Title</Label>
                 <Input type="text" name="title" id="postTitle" placeholder="Enter the post title" value={ title } onChange={e => this.setState({ title: e.target.value })} />
-                { title ?
+                { category ?
                   <small><strong>Link preview:</strong> { window.location.protocol + '//' + window.location.host + slug }</small>
                 : '' }
               </FormGroup>

@@ -58,7 +58,7 @@ class PostSingle extends Component {
                   <Row>
                     <Col sm="12" md={{ size: 8, offset: 2 }}>
                       <div dangerouslySetInnerHTML={this.createMarkup(currentPost.body)} />
-                      <PostActions postId={currentPost.id} />
+                      <PostActions post={currentPost} />
                     </Col>
                   </Row>
                 </Container>
