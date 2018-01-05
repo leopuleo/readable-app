@@ -36,7 +36,7 @@ class PostSingle extends Component {
       if(!currentPost.hasOwnProperty('id')) {
         return (<NotFound />)
       }
-      if(!currentPost.hasOwnProperty('id') || currentPost.deleted) {
+      if(currentPost.deleted) {
         return (<Container><Alert color="warning">Post deleted</Alert></Container>)
       } else {
         return (
