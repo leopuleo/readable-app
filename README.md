@@ -29,5 +29,5 @@ MIT
 
 # Further improvements/developments
 
-[ ] Implement editor for new / edit post view.
-[ ] Fetch post images via API from Unsplash.
+- [ ] Implement better editor for new / edit post view.
+- [ ] Fetch post images via API from Unsplash.
