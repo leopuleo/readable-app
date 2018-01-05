@@ -1,4 +1,4 @@
-This is my final project for Udacity's React & Redux Fundamentals course ([Udacity React Nanodegree Program](https://www.udacity.com/course/react-nanodegree--nd019)).
+This is my final project for Udacity's React & Redux course ([Udacity React Nanodegree Program](https://www.udacity.com/course/react-nanodegree--nd019)).
 
 # Install the API server
 1. Clone the API server from https://github.com/leopuleo/readable-server
