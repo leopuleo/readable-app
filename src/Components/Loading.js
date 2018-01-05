@@ -1,14 +1,9 @@
 import React, { Component } from 'react'
-import { Alert } from 'reactstrap'
+import { Container, Alert } from 'reactstrap'
 
 class Loading extends Component {
   render() {
-    return (
-      <div className="loading">
-        <Alert color="warning">Loading...</Alert>
-      </div>
-
-    )
+    return (<Container><Alert color="warning">Loading...</Alert></Container>)
   }
 }
 
