@@ -1,17 +1,9 @@
-import {
-  RECEIVE_SINGLE_COMMENTS,
-  NEW_COMMENT,
-  DELETE_COMMENT,
-  UPDATE_COMMENT,
-  EDITING_COMMENT,
-  LOADING_COMMENTS,
-  UPDATE_COMMENT_VOTE
-} from '../Actions/Comments';
+import * as commentActions from '../Actions/Comments';
 
 export function loadingComments(state = true, action) {
   const { type, status } = action;
   switch (type) {
-    case LOADING_COMMENTS :
+    case commentActions.LOADING_COMMENTS :
       return status
     default :
       return state
@@ -21,7 +13,7 @@ export function loadingComments(state = true, action) {
 export function editingComment(state = false, action) {
   const { type, status } = action;
   switch (type) {
-    case EDITING_COMMENT :
+    case commentActions.EDITING_COMMENT :
       return status
     default:
       return state
@@ -31,19 +23,19 @@ export function editingComment(state = false, action) {
 export function currentPostComments(state = [], action) {
   const { type } = action;
   switch (type) {
-    case RECEIVE_SINGLE_COMMENTS :
+    case commentActions.RECEIVE_SINGLE_COMMENTS :
       return action.comments
-    case NEW_COMMENT :
+    case commentActions.NEW_COMMENT :
       return [
         ...state,
         action.comment
       ]
-    case DELETE_COMMENT :
+    case commentActions.DELETE_COMMENT :
       return [
         ...state.filter(c => c.id !== action.comment.id),
           action.comment
       ]
-    case UPDATE_COMMENT :
+    case commentActions.UPDATE_COMMENT :
       const updatedComments = state.map(item => {
         if(item.id === action.comment.id) {
           return {...item, ...action.comment}
@@ -51,7 +43,7 @@ export function currentPostComments(state = [], action) {
         return item
       })
       return updatedComments
-    case UPDATE_COMMENT_VOTE :
+    case commentActions.UPDATE_COMMENT_VOTE :
       const updatedCommentsVotes = state.map(item => {
         if(item.id === action.comment.id) {
           return {...item, ...action.comment}
