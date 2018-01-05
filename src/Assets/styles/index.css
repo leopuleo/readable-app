@@ -17,3 +17,17 @@ h1, h2, h3, h4, h5, h6 {
 .page-title * {
   margin-bottom: 0;
 }
+
+@media screen and (max-width: 767px) {
+  .page-title {
+    padding: 20px 0;
+    margin-bottom: 20px;
+  }
+  .page-title h1 {
+    font-size: 1.5em;
+  }
+}
+
+.post-edit {
+  padding-bottom: 50px
+}

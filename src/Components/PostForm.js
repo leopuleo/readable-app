@@ -108,7 +108,7 @@ class PostForm extends Component {
         : ''}
         <Form onSubmit={this.handleSubmit}>
           <Row>
-            <Col sm="12">
+            <Col xs="12" md="12">
               <FormGroup>
                 <Label for="title" hidden>Title</Label>
                 <Input type="text" name="title" id="postTitle" placeholder="Enter the post title" value={ title } onChange={e => this.setState({ title: e.target.value })} />
@@ -119,13 +119,13 @@ class PostForm extends Component {
             </Col>
           </Row>
           <Row>
-            <Col sm="9">
+            <Col xs="12" md="9">
               <FormGroup>
                 <Label for="body" hidden>Body</Label>
                 <Input type="textarea" name="body" id="body" placeholder="Enter the post body" value={ body } onChange={e => this.setState({ body: e.target.value })} style={{ height: 300 }} />
               </FormGroup>
             </Col>
-            <Col sm="3">
+            <Col xs="12" md="3">
               <FormGroup>
                 <Label for="selectCategory">Category</Label>
                 <Input {...disabled} type="select" name="selectCategory" id="selectCategory" value={ category } onChange={e => this.setState({ category: e.target.value })}>
@@ -135,7 +135,6 @@ class PostForm extends Component {
                   ))}
                 </Input>
               </FormGroup>
-
               <FormGroup >
                 <Label for="author">Author</Label>
                 <Input {...disabled} type="text" name="author" id="author" placeholder="Enter the post author"  value={ author } onChange={e => this.setState({ author: e.target.value })} />
